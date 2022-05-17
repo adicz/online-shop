@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/CategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/CategoryService.java" afterDir="false" />
+    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="OSA-15 create addCategory method, test and controller.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/CategoryServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/CategoryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -39,12 +44,72 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "dbc094f382c070b556bb2457973ceaae"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="pl.sda.shop.onlineshop.service" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CategoryServiceTest.shouldAddCategory (1)">
+    <configuration name="CategoryServiceTest.shouldAddCategory (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.CategoryServiceTest" />
+      <option name="METHOD_NAME" value="shouldAddCategory" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoryServiceTest.shouldAddCategory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.CategoryServiceTest" />
+      <option name="METHOD_NAME" value="shouldAddCategory(pl.sda.shop.onlineshop.model.Category)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoryServiceTest.shouldReturnCategoryById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.CategoryServiceTest" />
+      <option name="METHOD_NAME" value="shouldReturnCategoryById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OnlineShopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="online-shop" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="pl.sda.shop.onlineshop.OnlineShopApplication" />
@@ -52,6 +117,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CategoryServiceTest.shouldAddCategory (1)" />
+        <item itemvalue="JUnit.CategoryServiceTest.shouldAddCategory" />
+        <item itemvalue="JUnit.CategoryServiceTest.shouldReturnCategoryById" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,6 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652370809295</updated>
       <workItem from="1652370810773" duration="3346000" />
+      <workItem from="1652797714308" duration="4494000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652370939058</created>
@@ -70,7 +143,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652370939058</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="OSA-45 create Category.java, CategoryController.java, CategoryService.java and CategoryRepository.java classes.">
+      <created>1652720803985</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652720803985</updated>
+    </task>
+    <task id="LOCAL-00003" summary="OSA-45 create addCategory method, test and controller.">
+      <created>1652805333340</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652805333340</updated>
+    </task>
+    <task id="LOCAL-00004" summary="OSA-15 create addCategory method, test and controller.">
+      <created>1652805357519</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652805357519</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +183,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="OSA-45 create Category.java, CategoryController.java, CategoryService.java and CategoryRepository.java classes." />
+    <MESSAGE value="OSA-45 create addCategory method, test and controller." />
+    <MESSAGE value="OSA-15 create addCategory method, test and controller." />
+    <option name="LAST_COMMIT_MESSAGE" value="OSA-15 create addCategory method, test and controller." />
   </component>
 </project>

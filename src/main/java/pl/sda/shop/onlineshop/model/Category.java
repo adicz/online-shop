@@ -3,13 +3,11 @@ package pl.sda.shop.onlineshop.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import static javax.persistence.CascadeType.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Data
@@ -19,12 +17,14 @@ public class Category {
 
     @Id
     private Long id;
-    private String name;
+    private String categoryName;
     @OneToOne
     private Category parent;
-    @OneToMany
-    private List<Category> children = new ArrayList<Category>();
 
 
+    public Category(Long id, String categoryName) {
+        this.id = id;
+        this.categoryName = categoryName;
+    }
 
 }
