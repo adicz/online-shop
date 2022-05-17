@@ -22,10 +22,10 @@ public class Product {
     private String descrpition;
     @URL
     private String photo;
+    private Integer availability;
     @OneToOne
     private Category category;
     @Min(1)
     private Double price;
     private String brand;
-
 }

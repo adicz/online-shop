@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/ProductServiceTest.java" afterDir="false" />
+    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="commit1 OSA4 product_model WIP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/online-shop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/ProductServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,63 @@
       <recent name="pl.sda.shop.onlineshop.service" />
     </key>
   </component>
+  <component name="RunManager" selected="JUnit.ProductServiceTest.shouldAddProduct">
+    <configuration name="ProductServiceTest.shouldAddProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.ProductServiceTest" />
+      <option name="METHOD_NAME" value="shouldAddProduct" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.shouldReturnProductById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.ProductServiceTest" />
+      <option name="METHOD_NAME" value="shouldReturnProductById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.shouldThrowExceptionIfProductDoesntExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.ProductServiceTest" />
+      <option name="METHOD_NAME" value="shouldThrowExceptionIfProductDoesntExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProductServiceTest.shouldAddProduct" />
+        <item itemvalue="JUnit.ProductServiceTest.shouldThrowExceptionIfProductDoesntExist" />
+        <item itemvalue="JUnit.ProductServiceTest.shouldReturnProductById" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -80,5 +133,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/online_shop$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1652803269902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>pl.sda.shop.onlineshop.service.*</FILTER>
+    </SUITE>
   </component>
 </project>

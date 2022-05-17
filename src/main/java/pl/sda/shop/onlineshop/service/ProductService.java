@@ -22,6 +22,10 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public Product findById(Long id){
+        return productRepository.findById(id).orElseThrow();
+    }
+
     public List<Product> findByCategory(Category category){
         return productRepository.findByCategory(category);
     }
@@ -34,4 +38,5 @@ public class ProductService {
         return productRepository.findByTitle(title);
     }
 
+    public List<Product> findAll() {return productRepository.findAll();}
 }
