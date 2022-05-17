@@ -1,4 +1,4 @@
-package pl.sda.shop.onlineshop.exceptions.user;
+package pl.sda.shop.onlineshop.exception.user;
 
 public class UserNotFoundException extends RuntimeException {
 

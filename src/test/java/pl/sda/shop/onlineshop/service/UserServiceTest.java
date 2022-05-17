@@ -1,12 +1,14 @@
 package pl.sda.shop.onlineshop.service;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.sda.shop.onlineshop.exceptions.user.UserNotFoundException;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExist;
+import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.Address;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
@@ -28,16 +30,42 @@ class UserServiceTest {
 
     private final long USER_ID = 1L;
 
-    private final User USER = new User(
-            1L,
-            "adicz",
-            "1234",
-            "Adrian",
-            "Czyż",
-            "adrian.czyz@wp.pl",
-            new Address(),
-            null,
-            NotifyOption.NONE);
+    private static User USER;
+    private static User USER_TO_CREATE;
+    private static User USER_UPDATED;
+
+    @BeforeAll
+    static void beforeAll() {
+        USER = User.builder()
+                .id(1L)
+                .username("adicz")
+                .password("1234")
+                .firstname("Adrian")
+                .lastname("Czyż")
+                .email("adrian.czyz@xyz.pl")
+                .address(new Address())
+                .image(null)
+                .notifyOption(NotifyOption.NONE)
+                .build();
+
+        USER_UPDATED = User.builder()
+                .id(1L)
+                .username("adicz")
+                .password("1234")
+                .firstname("Kamil")
+                .lastname("Czyż")
+                .email("adrian.czyz@xyz.pl")
+                .address(new Address())
+                .image(null)
+                .notifyOption(NotifyOption.NONE)
+                .build();
+
+        USER_TO_CREATE = User.builder()
+                .username("adicz")
+                .password("1234")
+                .email("adrian.czyz@xyz.pl")
+                .build();
+    }
 
     @Test
     void shouldReturnUserById() {
@@ -56,15 +84,49 @@ class UserServiceTest {
         //WHEN & THEN
         assertThrows(UserNotFoundException.class,
                 () -> userService.findById(USER_ID),
-                "User with id = 1 not fount in database");
+                "User with id = 1 not found in database");
     }
 
     @Test
-    void update() {
-
+    void shouldAddNewUser() {
+        //GIVEN
+        Mockito.when(userRepository.existsByUsername(any())).thenReturn(false);
+        Mockito.when(userRepository.existsByEmail(any())).thenReturn(false);
+        Mockito.when(userRepository.save(any())).thenReturn(USER);
+        //WHEN
+        User result = userService.save(USER_TO_CREATE);
+        //THEN
+        assertEquals(USER, result);
     }
 
     @Test
-    void delete() {
+    void shouldThrowExceptionIfUserExistInDatabase() {
+        //GIVEN
+        Mockito.when(userRepository.existsByUsername(any())).thenReturn(true);
+        // todo czemu test nie przechodzi jeżeli mamy użytą linijkę poniżej?
+        //Mockito.when(userRepository.existsByEmail(any())).thenReturn(true);
+        //WHEN & THEN
+        assertThrows(UserAlreadyExist.class,
+                () -> userService.save(USER),
+                "User with username 'adicz' or email 'adrian.czyz@xyz.pl' already exist in database");
     }
+
+    @Test
+    void shouldUpdateUser() {
+        //GIVEN
+        Mockito.when(userRepository.findById(any())).thenReturn(Optional.of(USER));
+        Mockito.when(userRepository.save(any())).thenReturn(USER_UPDATED);
+        //WHEN
+        User result = userService.update(USER);
+        //THEN
+        assertEquals(USER, result);
+    }
+
+    @Test
+    void shouldThrowExceptionIfUserDoesntExistWhenUpdate() {
+        //GIVEN
+
+        //WHEN & THEN
+    }
+
 }

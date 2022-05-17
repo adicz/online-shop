@@ -2,7 +2,8 @@ package pl.sda.shop.onlineshop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.sda.shop.onlineshop.exceptions.user.UserNotFoundException;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExist;
+import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.UserRepository;
 
@@ -12,20 +13,34 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    User findById(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(String.format("User with id = %d not fount in database", id)));
+                .orElseThrow(() -> new UserNotFoundException(String.format("User with id = %d not found in database", id)));
+    }
+    //todo jak powinniśmy nazywać metody? save, create, add?
+    public User save(User user) {
+        if(userExistByUsernameOrEmail(user)) {
+            throw new UserAlreadyExist(String.format(
+                    "User with username '%s' or email '%s' already exist in database",
+                    user.getUsername(),
+                    user.getEmail()));
+        }
+        return userRepository.save(user);
     }
 
-    User save(User user) {
-        return null;
+    private boolean userExistByUsernameOrEmail(User user) {
+        return userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.email);
     }
 
-    User update(User user) {
-        return null;
+    public User update(User user) {
+        if(userRepository.existsById(user.getId())) {
+           userRepository.getById(user.getId());
+
+        }
+        throw new UserNotFoundException(String.format("User with id = %d not found in database", user.getId()));
     }
 
-    boolean delete(User user) {
+    public boolean delete(User user) {
         return false;
     }
 

@@ -1,7 +1,9 @@
 package pl.sda.shop.onlineshop.model;
 
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
@@ -18,6 +20,7 @@ import javax.persistence.OneToOne;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
