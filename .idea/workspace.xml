@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="commit2 OSA4 product_model WIP">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/ProductService.java" afterDir="false" />
+    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="commit3 OSA4 product_model WIP">
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/ProductServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +50,22 @@
       <recent name="pl.sda.shop.onlineshop.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest.shouldAddProduct">
+  <component name="RunManager" selected="JUnit.ProductServiceTest">
+    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.ProductServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProductServiceTest.shouldAddProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="online-shop" />
       <extension name="coverage">
@@ -105,6 +116,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductServiceTest" />
         <item itemvalue="JUnit.ProductServiceTest.shouldAddProduct" />
         <item itemvalue="JUnit.ProductServiceTest.shouldThrowExceptionIfProductDoesntExist" />
         <item itemvalue="JUnit.ProductServiceTest.shouldReturnProductById" />
@@ -127,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652811000611</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commit3 OSA4 product_model WIP">
+      <created>1652895218498</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652895218498</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,7 +163,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit2 OSA4 product_model WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit2 OSA4 product_model WIP" />
+    <MESSAGE value="commit3 OSA4 product_model WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit3 OSA4 product_model WIP" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/online_shop$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1652803269902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

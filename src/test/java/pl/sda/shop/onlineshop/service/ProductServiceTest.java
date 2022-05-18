@@ -1,5 +1,6 @@
 package pl.sda.shop.onlineshop.service;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,6 +12,8 @@ import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -22,7 +25,7 @@ class ProductServiceTest {
 
     private final long PRODUCT_ID = 10L;
 
-    private final Product PRODUCT = new Product(
+    private static final Product PRODUCT = new Product(
             1L,
             "shoes",
             "white running shoes",
@@ -30,8 +33,20 @@ class ProductServiceTest {
             100,
             new Category(),
             50.00,
-            "NIKE")
-            ;
+            "NIKE");
+
+    private static final Product PRODUCT_2 = new Product(
+            1L,
+            "shoes",
+            "white running shoes",
+            "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
+            100,
+            new Category(),
+            50.00,
+            "NIKE");
+
+    private static final List<Product> PRODUCTS = Arrays.asList(PRODUCT, PRODUCT_2);
+
     @Mock
     private ProductRepository productRepository;
     @InjectMocks
@@ -52,13 +67,18 @@ class ProductServiceTest {
         //GIVEN
         Mockito.when(productRepository.save(any())).thenReturn(PRODUCT);
         //WHEN
-        Product result = productService.save(PRODUCT);
+        Product result = productService.addProduct(PRODUCT);
         //THEN
         assertEquals(PRODUCT, result);
     }
     @Test
     void shouldReturnAllProducts() {
-
+        //GIVEN
+        Mockito.when(productRepository.findAll()).thenReturn(PRODUCTS);
+        //when
+        List<Product> result = productService.findAll();
+        //then
+        assertEquals(PRODUCTS, result);
     }
 
     @Test
