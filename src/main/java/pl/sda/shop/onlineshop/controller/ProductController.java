@@ -19,8 +19,8 @@ public class ProductController {
 
 
     @PostMapping
-    public ResponseEntity<Product> save(@Valid @RequestBody Product product) {
-        return ResponseEntity.ok(productService.save(product));
+    public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product) {
+        return ResponseEntity.ok(productService.addProduct(product));
     }
 
     @DeleteMapping("/{id}")

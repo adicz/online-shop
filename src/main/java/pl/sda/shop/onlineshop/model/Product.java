@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -18,6 +19,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @NotNull
     private String title;
     private String descrpition;
     @URL
@@ -25,7 +27,7 @@ public class Product {
     private Integer availability;
     @OneToOne
     private Category category;
-    @Min(1)
+    @NotNull
     private Double price;
     private String brand;
 }
