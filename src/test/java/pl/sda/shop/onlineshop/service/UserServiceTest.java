@@ -14,9 +14,12 @@ import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
 import pl.sda.shop.onlineshop.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,6 +36,7 @@ class UserServiceTest {
     private static User USER;
     private static User USER_TO_CREATE;
     private static User USER_UPDATED;
+    private static List<User> USER_LIST;
 
     @BeforeAll
     static void beforeAll() {
@@ -65,6 +69,8 @@ class UserServiceTest {
                 .password("1234")
                 .email("adrian.czyz@xyz.pl")
                 .build();
+
+        USER_LIST = List.of(USER, USER, USER);
     }
 
     @Test
@@ -88,13 +94,23 @@ class UserServiceTest {
     }
 
     @Test
+    void shouldReturnAllUsers() {
+        //GIVEN
+        Mockito.when(userRepository.findAll()).thenReturn(USER_LIST);
+        //WHEN
+        List<User> users = userService.findAll();
+        //THEN
+        assertEquals(USER_LIST, users);
+    }
+
+    @Test
     void shouldAddNewUser() {
         //GIVEN
         Mockito.when(userRepository.existsByUsername(any())).thenReturn(false);
         Mockito.when(userRepository.existsByEmail(any())).thenReturn(false);
         Mockito.when(userRepository.save(any())).thenReturn(USER);
         //WHEN
-        User result = userService.save(USER_TO_CREATE);
+        User result = userService.create(USER_TO_CREATE);
         //THEN
         assertEquals(USER, result);
     }
@@ -107,26 +123,16 @@ class UserServiceTest {
         //Mockito.when(userRepository.existsByEmail(any())).thenReturn(true);
         //WHEN & THEN
         assertThrows(UserAlreadyExist.class,
-                () -> userService.save(USER),
+                () -> userService.create(USER),
                 "User with username 'adicz' or email 'adrian.czyz@xyz.pl' already exist in database");
     }
 
     @Test
-    void shouldUpdateUser() {
-        //GIVEN
-        Mockito.when(userRepository.findById(any())).thenReturn(Optional.of(USER));
-        Mockito.when(userRepository.save(any())).thenReturn(USER_UPDATED);
+    void shouldRemoveUser() {
         //WHEN
-        User result = userService.update(USER);
+        boolean result = userService.deleteById(USER_ID);
         //THEN
-        assertEquals(USER, result);
-    }
-
-    @Test
-    void shouldThrowExceptionIfUserDoesntExistWhenUpdate() {
-        //GIVEN
-
-        //WHEN & THEN
+        assertTrue(result);
     }
 
 }
