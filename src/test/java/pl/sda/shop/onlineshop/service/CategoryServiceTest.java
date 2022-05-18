@@ -14,14 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class CategoryServiceTest {
     private static final Category CATEGORY = new Category(1L, "Computers", null);
-    private static final Category CATEGORY_2 = new Category(2L, "Notebooks", CATEGORY);
+    private static final Category CATEGORY_2 = new Category(2L, "Notebooks", null);
+    private static final Category CATEGORY_2_UPDATED = new Category(2L, "PC", CATEGORY);
     private static final List<Category> CATEGORIES = Arrays.asList(CATEGORY, CATEGORY_2);
     private static final Long CATEGORY_ID = 3L;
 
@@ -77,5 +77,24 @@ class CategoryServiceTest {
         Category result = categoryService.findByName("Computers");
         //then
         assertEquals(CATEGORY, result);
+    }
+
+    @Test
+    void shouldUpdateCategory(){
+        //given
+        Mockito.when(categoryRepository.existsById(any())).thenReturn(true);
+        Mockito.when(categoryRepository.save(any())).thenReturn(CATEGORY_2_UPDATED);
+        //then
+        Category result = categoryService.update(CATEGORY_2_UPDATED);
+        //when
+        assertEquals(CATEGORY_2_UPDATED, result);
+    }
+
+    @Test
+    void shouldDeleteCategoryById(){
+        //then
+        boolean result = categoryService.deleteById(CATEGORY_2_UPDATED);
+        //when
+        assertTrue(result);
     }
 }

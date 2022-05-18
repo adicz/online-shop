@@ -35,4 +35,14 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findByName(categoryName));
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category){
+        return ResponseEntity.ok(categoryService.update(category));
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteById(@RequestBody Category category){
+        return categoryService.deleteById(category);
+    }
+
 }

@@ -37,4 +37,17 @@ public class CategoryService {
         return categoryRepository.findByName(categoryName);
     }
 
+    public Category update(Category category)
+    {
+        if (categoryRepository.existsById(category.getId())){
+            return categoryRepository.save(category);
+        }
+        throw new CategoryNotFoundException(String.format("Category with id = %d not found in the database", category.getId()));
+    }
+
+    public boolean deleteById(Category category){
+        categoryRepository.deleteById(category.getId());
+        return true;
+    }
+
 }
