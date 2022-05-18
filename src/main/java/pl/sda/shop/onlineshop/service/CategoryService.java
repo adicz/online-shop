@@ -2,6 +2,8 @@ package pl.sda.shop.onlineshop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.sda.shop.onlineshop.exception.category.CategoryAlreadyExist;
+import pl.sda.shop.onlineshop.exception.category.CategoryNotFoundException;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.repository.CategoryRepository;
 
@@ -14,11 +16,17 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     public Category addCategory(Category category){
+        if (categoryRepository.existByName(category.getCategoryName()))
+        {
+            throw new CategoryAlreadyExist(String.format(
+                    "Category with categoryName '%s' already exist in database", category.getCategoryName()));
+        }
         return categoryRepository.save(category);
     }
 
     public Category findById(Long id){
-        return categoryRepository.findById(id).orElseThrow();
+        return categoryRepository.findById(id).orElseThrow(
+                () -> new CategoryNotFoundException(String.format("Category with id = %d not found in database", id)));
     }
 
     public List<Category> findAll(){
