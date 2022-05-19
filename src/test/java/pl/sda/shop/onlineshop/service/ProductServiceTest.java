@@ -93,4 +93,9 @@ class ProductServiceTest {
                         PRODUCT_ID +
                         " not fount in database");
     }
+
+    @Test
+    void shouldUpdateProduct() {
+
+    }
 }
