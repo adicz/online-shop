@@ -2,7 +2,7 @@ package pl.sda.shop.onlineshop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.sda.shop.onlineshop.exception.user.UserAlreadyExist;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExists;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.UserRepository;
@@ -25,18 +25,14 @@ public class UserService {
     }
 
     //todo jak powinniśmy nazywać metody? save, create, add?
-    public User create(User user) {
-        if (userExistByUsernameOrEmail(user)) {
-            throw new UserAlreadyExist(String.format(
+    public User save(User user) {
+        if (userRepository.existsByUsernameAndEmail(user.getUsername(), user.getEmail())) {
+            throw new UserAlreadyExists(String.format(
                     "User with username '%s' or email '%s' already exist in database",
                     user.getUsername(),
                     user.getEmail()));
         }
         return userRepository.save(user);
-    }
-
-    private boolean userExistByUsernameOrEmail(User user) {
-        return userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.email);
     }
 
     public boolean deleteById(Long id) {

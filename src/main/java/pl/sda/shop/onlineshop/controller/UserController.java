@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sda.shop.onlineshop.controller.dto.UserCreateDto;
 import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
+import pl.sda.shop.onlineshop.controller.mapper.UserMapper;
 import pl.sda.shop.onlineshop.service.UserService;
 
 import javax.validation.Valid;
@@ -37,13 +38,16 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> findAll() {
-        return ResponseEntity.ok(mapUserToUserResponseDto(userService.findAll()));
+        return ResponseEntity.ok(
+                userService.findAll().stream()
+                        .map(UserMapper::mapUserToUserResponseDto)
+                        .toList());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserResponseDto> createUser(@Valid @RequestBody UserCreateDto userCreateDto) {
-        return ResponseEntity.ok(mapUserToUserResponseDto(userService.create(mapToUser(userCreateDto))));
+        return ResponseEntity.ok(mapUserToUserResponseDto(userService.save(mapToUser(userCreateDto))));
     }
 
     @PatchMapping("/{id}")

@@ -2,12 +2,14 @@ package pl.sda.shop.onlineshop.service;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.sda.shop.onlineshop.exception.user.UserAlreadyExist;
+import org.springframework.boot.test.context.SpringBootTest;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExists;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.Address;
 import pl.sda.shop.onlineshop.model.User;
@@ -22,7 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
+//@SpringBootTest
 @ExtendWith(MockitoExtension.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserServiceTest {
     //todo różnica pomiędzy @Mock a @MockBean
     @Mock
@@ -39,38 +43,30 @@ class UserServiceTest {
     private static List<User> USER_LIST;
 
     @BeforeAll
-    static void beforeAll() {
-        USER = User.builder()
-                .id(1L)
-                .username("adicz")
-                .password("1234")
-                .firstname("Adrian")
-                .lastname("Czyż")
-                .email("adrian.czyz@xyz.pl")
-                .address(new Address())
-                .image(null)
-                .notifyOption(NotifyOption.NONE)
-                .build();
+    void beforeAll() {
+        USER = createUser("Adrian");
+        USER_TO_CREATE = createUser("Kamil");
 
-        USER_UPDATED = User.builder()
-                .id(1L)
-                .username("adicz")
-                .password("1234")
-                .firstname("Kamil")
-                .lastname("Czyż")
-                .email("adrian.czyz@xyz.pl")
-                .address(new Address())
-                .image(null)
-                .notifyOption(NotifyOption.NONE)
-                .build();
-
-        USER_TO_CREATE = User.builder()
-                .username("adicz")
-                .password("1234")
-                .email("adrian.czyz@xyz.pl")
-                .build();
+        USER_TO_CREATE = new User();
+        USER.setUsername("adicz");
+        USER.setPassword("1234");
+        USER.setEmail("adrian.czyz@xyz.pl");
 
         USER_LIST = List.of(USER, USER, USER);
+    }
+
+    private User createUser(String firstname) {
+        User user = new User();
+        user.setId(1L);
+        user.setUsername("adicz");
+        user.setPassword("1234");
+        user.setFirstname(firstname);
+        user.setLastname("Czyż");
+        user.setEmail("adrian.czyz@xyz.pl");
+        user.setAddress(new Address());
+        user.setImage(null);
+        user.setNotifyOption(NotifyOption.NONE);
+        return user;
     }
 
     @Test
@@ -106,11 +102,10 @@ class UserServiceTest {
     @Test
     void shouldAddNewUser() {
         //GIVEN
-        Mockito.when(userRepository.existsByUsername(any())).thenReturn(false);
-        Mockito.when(userRepository.existsByEmail(any())).thenReturn(false);
+        Mockito.when(userRepository.existsByUsernameAndEmail(any(), any())).thenReturn(false);
         Mockito.when(userRepository.save(any())).thenReturn(USER);
         //WHEN
-        User result = userService.create(USER_TO_CREATE);
+        User result = userService.save(USER_TO_CREATE);
         //THEN
         assertEquals(USER, result);
     }
@@ -118,12 +113,10 @@ class UserServiceTest {
     @Test
     void shouldThrowExceptionIfUserExistInDatabase() {
         //GIVEN
-        Mockito.when(userRepository.existsByUsername(any())).thenReturn(true);
-        // todo czemu test nie przechodzi jeżeli mamy użytą linijkę poniżej?
-        //Mockito.when(userRepository.existsByEmail(any())).thenReturn(true);
+        Mockito.when(userRepository.existsByUsernameAndEmail(any(), any())).thenReturn(true);
         //WHEN & THEN
-        assertThrows(UserAlreadyExist.class,
-                () -> userService.create(USER),
+        assertThrows(UserAlreadyExists.class,
+                () -> userService.save(USER),
                 "User with username 'adicz' or email 'adrian.czyz@xyz.pl' already exist in database");
     }
 
