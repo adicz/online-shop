@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -28,6 +29,6 @@ public class Product {
     @OneToOne
     private Category category;
     @NotNull
-    private Double price;
+    private BigDecimal price;
     private String brand;
 }

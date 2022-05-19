@@ -7,15 +7,15 @@ import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
-
+    @Autowired
     private final ProductRepository productRepository;
 
     public Product addProduct(Product product) {
@@ -50,7 +50,7 @@ public class ProductService {
         throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
     }
 
-    public void updatePrice(Long id, Double price) {
+    public void updatePrice(Long id, BigDecimal price) {
         if(productRepository.existsById(id)) {
             Product p = productRepository.getById(id);
             p.setPrice(price);
@@ -59,7 +59,7 @@ public class ProductService {
         throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
     }
 
-    public void updateDescription(Long id, String description) {
+    public Product updateDescription(Long id, String description) {
         if(productRepository.existsById(id)) {
             Product p = productRepository.getById(id);
             p.setDescrpition(description);
@@ -77,8 +77,9 @@ public class ProductService {
         throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
     }
 
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
         productRepository.deleteById(id);
+        return true;
     }
 
 }

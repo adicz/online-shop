@@ -12,6 +12,7 @@ import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,17 +33,17 @@ class ProductServiceTest {
             "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
             100,
             new Category(),
-            50.00,
+            BigDecimal.valueOf(50.00),
             "NIKE");
 
     private static final Product PRODUCT_2 = new Product(
-            1L,
+            2L,
             "shoes",
-            "white running shoes",
+            "white training shoes",
             "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
             100,
             new Category(),
-            50.00,
+            BigDecimal.valueOf(50.00),
             "NIKE");
 
     private static final List<Product> PRODUCTS = Arrays.asList(PRODUCT, PRODUCT_2);
