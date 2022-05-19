@@ -72,7 +72,7 @@ class CategoryServiceTest {
     @Test
     void shouldReturnCategoryByName() {
         //given
-        Mockito.when(categoryRepository.findByName(any())).thenReturn(Optional.of(CATEGORY));
+        Mockito.when(categoryRepository.findCategoryByCategoryName(any())).thenReturn(Optional.of(CATEGORY));
         //when
         Category result = categoryService.findByName("Computers");
         //then
