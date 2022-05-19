@@ -24,7 +24,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    //todo jak powinniśmy nazywać metody? save, create, add?
     public User save(User user) {
         if (userRepository.existsByUsernameAndEmail(user.getUsername(), user.getEmail())) {
             throw new UserAlreadyExists(String.format(
@@ -35,10 +34,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User update(User user) {
+        findById(user.getId());
+        return userRepository.save(user);
+    }
+
     public boolean deleteById(Long id) {
         userRepository.deleteById(id);
         return true;
     }
-
 
 }

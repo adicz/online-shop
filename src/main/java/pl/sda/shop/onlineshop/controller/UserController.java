@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.sda.shop.onlineshop.controller.dto.UserCreateDto;
 import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
 import pl.sda.shop.onlineshop.controller.mapper.UserMapper;
+import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 import static pl.sda.shop.onlineshop.controller.mapper.UserMapper.mapToUser;
 import static pl.sda.shop.onlineshop.controller.mapper.UserMapper.mapUserToUserResponseDto;
@@ -38,10 +38,9 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> findAll() {
-        return ResponseEntity.ok(
-                userService.findAll().stream()
-                        .map(UserMapper::mapUserToUserResponseDto)
-                        .toList());
+        return ResponseEntity.ok(userService.findAll().stream()
+                .map(UserMapper::mapUserToUserResponseDto)
+                .toList());
     }
 
     @PostMapping
@@ -51,9 +50,8 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserResponseDto> patchUser(@PathVariable Long id, Map<String, Object> updates) {
-        //todo jak to rozwiązać? refleksja?
-        return null;
+    public ResponseEntity<UserResponseDto> patchUser(@RequestBody User user) {
+        return ResponseEntity.ok(mapUserToUserResponseDto(userService.update(user)));
     }
 
     @DeleteMapping("/{id}")
