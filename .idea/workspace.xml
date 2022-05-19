@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="OSA-16 add delete and update methods">
+    <list default="true" id="be586ea6-740d-46c6-b018-347a1f4b6bea" name="Changes" comment="OSA-16 changes in findByName and update methods inside CategoryService.java class + general formatting changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/exception/category/CategoryAlreadyExist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/exception/category/CategoryAlreadyExists.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/repository/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/shop/onlineshop/service/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/CategoryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/sda/shop/onlineshop/service/CategoryServiceTest.java" afterDir="false" />
     </list>
@@ -74,23 +72,7 @@
       <recent name="pl.sda.shop.onlineshop.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CategoryServiceTest.shouldDeleteCategory">
-    <configuration name="CategoryServiceTest.shouldAddCategory (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="online-shop" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
-      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.CategoryServiceTest" />
-      <option name="METHOD_NAME" value="shouldAddCategory" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.CategoryServiceTest.shouldSaveCategory">
     <configuration name="CategoryServiceTest.shouldDeleteCategory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="online-shop" />
       <extension name="coverage">
@@ -118,6 +100,22 @@
       <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
       <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.CategoryServiceTest" />
       <option name="METHOD_NAME" value="shouldReturnCategoryById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoryServiceTest.shouldSaveCategory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="online-shop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.sda.shop.onlineshop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.sda.shop.onlineshop.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.sda.shop.onlineshop.service.CategoryServiceTest" />
+      <option name="METHOD_NAME" value="shouldSaveCategory" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -164,9 +162,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CategoryServiceTest.shouldSaveCategory" />
         <item itemvalue="JUnit.CategoryServiceTest.shouldDeleteCategory" />
         <item itemvalue="JUnit.CategoryServiceTest.shouldUpdateCategory" />
-        <item itemvalue="JUnit.CategoryServiceTest.shouldAddCategory (1)" />
         <item itemvalue="JUnit.CategoryServiceTest.shouldReturnCategoryById" />
         <item itemvalue="JUnit.CategoryServiceTest.shouldThrowExceptionWhenCategoryNotExist" />
       </list>
@@ -185,7 +183,7 @@
       <workItem from="1652869818001" duration="2724000" />
       <workItem from="1652888429221" duration="11532000" />
       <workItem from="1652970271284" duration="571000" />
-      <workItem from="1652976687669" duration="1756000" />
+      <workItem from="1652976687669" duration="3657000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652370939058</created>
@@ -236,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652899476218</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="OSA-16 changes in findByName and update methods inside CategoryService.java class + general formatting changes.">
+      <created>1652978531238</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652978531238</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +265,7 @@
     <MESSAGE value="OSA-15 create addCategory method, test and controller." />
     <MESSAGE value="OSA-16 create exceptions classes, added validation for the add method." />
     <MESSAGE value="OSA-16 add delete and update methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="OSA-16 add delete and update methods" />
+    <MESSAGE value="OSA-16 changes in findByName and update methods inside CategoryService.java class + general formatting changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="OSA-16 changes in findByName and update methods inside CategoryService.java class + general formatting changes." />
   </component>
 </project>

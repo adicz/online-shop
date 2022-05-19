@@ -17,7 +17,7 @@ public class CategoryController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.addCategory(category));
+        return ResponseEntity.ok(categoryService.save(category));
     }
 
     @GetMapping("/{id}")

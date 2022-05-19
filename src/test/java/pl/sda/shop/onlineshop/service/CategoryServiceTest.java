@@ -31,11 +31,11 @@ class CategoryServiceTest {
     private CategoryService categoryService;
 
     @Test
-    void shouldAddCategory() {
+    void shouldSaveCategory() {
         //given
         Mockito.when(categoryRepository.save(any())).thenReturn(CATEGORY);
         //when
-        Category result = categoryService.addCategory(CATEGORY);
+        Category result = categoryService.save(CATEGORY);
         //then
         assertEquals(CATEGORY, result);
     }
