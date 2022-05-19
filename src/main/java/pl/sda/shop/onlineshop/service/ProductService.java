@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ProductService {
 
-    @Autowired
     private final ProductRepository productRepository;
 
     public Product addProduct(Product product) {
@@ -42,39 +41,27 @@ public class ProductService {
     }
 
     public void updateTitle(Long id, String title) {
-        if(productRepository.existsById(id)) {
-            Product p = productRepository.getById(id);
-            p.setTitle(title);
-            productRepository.save(p);
-        }
-        throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
+        Product product = findById(id);
+        product.setTitle(title);
+        productRepository.save(product);
     }
 
     public void updatePrice(Long id, BigDecimal price) {
-        if(productRepository.existsById(id)) {
-            Product p = productRepository.getById(id);
-            p.setPrice(price);
-            productRepository.save(p);
-    }
-        throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
+        Product product = findById(id);
+        product.setPrice(price);
+        productRepository.save(product);
     }
 
-    public Product updateDescription(Long id, String description) {
-        if(productRepository.existsById(id)) {
-            Product p = productRepository.getById(id);
-            p.setDescrpition(description);
-            productRepository.save(p);
-    }
-        throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
+    public void updateDescription(Long id, String description) {
+        Product product = findById(id);
+        product.setDescrpition(description);
+        productRepository.save(product);
     }
 
     public void updatePhoto(Long id, String url) {
-        if(productRepository.existsById(id)) {
-            Product p = productRepository.getById(id);
-            p.setPhoto(url);
-            productRepository.save(p);
-        }
-        throw new NoSuchElementException(String.format("Product with id = %d not found in database", id));
+        Product product = findById(id);
+        product.setPhoto(url);
+        productRepository.save(product);
     }
 
     public boolean deleteById(Long id) {
