@@ -29,17 +29,17 @@ public class ProductController {
     }
 
     @GetMapping("/{category}")
-    ResponseEntity<List<Product>> getCategory(@PathVariable Category category) {
+    ResponseEntity<List<Product>> getProductByCategory(@PathVariable Category category) {
         return ResponseEntity.ok(productService.findByCategory(category));
     }
 
     @GetMapping("/{brand}")
-    ResponseEntity<List<Product>> getBrand(@PathVariable String brand) {
+    ResponseEntity<List<Product>> getProductByBrand(@PathVariable String brand) {
         return ResponseEntity.ok(productService.findByBrand(brand));
     }
 
     @GetMapping("/{title}")
-    ResponseEntity<List<Product>> getTitle(@PathVariable String title) {
+    ResponseEntity<List<Product>> getProductByTitle(@PathVariable String title) {
         return ResponseEntity.ok(productService.findByTitle(title));
     }
 }

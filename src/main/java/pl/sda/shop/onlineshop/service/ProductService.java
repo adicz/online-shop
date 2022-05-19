@@ -40,28 +40,11 @@ public class ProductService {
         return productRepository.findByTitle(title);
     }
 
-    public void updateTitle(Long id, String title) {
-        Product product = findById(id);
-        product.setTitle(title);
-        productRepository.save(product);
-    }
-
-    public void updatePrice(Long id, BigDecimal price) {
-        Product product = findById(id);
-        product.setPrice(price);
-        productRepository.save(product);
-    }
-
-    public void updateDescription(Long id, String description) {
-        Product product = findById(id);
-        product.setDescrpition(description);
-        productRepository.save(product);
-    }
-
-    public void updatePhoto(Long id, String url) {
-        Product product = findById(id);
-        product.setPhoto(url);
-        productRepository.save(product);
+    public Product update(Product product) {
+        productRepository.findById(product.getId()).orElseThrow(
+                () -> new NoSuchElementException(String.format("Product with id = %d not found in database", product.getId())));
+        findById(product.getId());
+        return productRepository.save(product);
     }
 
     public boolean deleteById(Long id) {
