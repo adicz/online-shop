@@ -16,33 +16,33 @@ public class CategoryController {
 
     //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
-    public ResponseEntity<Category> addCategory(@RequestBody Category category){
+    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         return ResponseEntity.ok(categoryService.addCategory(category));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id){
+    public ResponseEntity<Category> findById(@PathVariable Long id) {
         return ResponseEntity.ok(categoryService.findById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll(){
+    public ResponseEntity<List<Category>> findAll() {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
     @GetMapping("/name")
-    public ResponseEntity<Category> findByName(@RequestParam String categoryName){
+    public ResponseEntity<Category> findByName(@RequestParam String categoryName) {
         return ResponseEntity.ok(categoryService.findByName(categoryName));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category){
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
         return ResponseEntity.ok(categoryService.update(category));
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteById(@RequestBody Category category){
-        return categoryService.deleteById(category);
+    public ResponseEntity<Boolean> deleteById(@PathVariable Long id) {
+        return ResponseEntity.ok(categoryService.deleteById(id));
     }
 
 }

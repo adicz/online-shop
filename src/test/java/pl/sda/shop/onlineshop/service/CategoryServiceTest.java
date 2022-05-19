@@ -31,7 +31,7 @@ class CategoryServiceTest {
     private CategoryService categoryService;
 
     @Test
-    void shouldAddCategory(){
+    void shouldAddCategory() {
         //given
         Mockito.when(categoryRepository.save(any())).thenReturn(CATEGORY);
         //when
@@ -41,7 +41,7 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldReturnCategoryById(){
+    void shouldReturnCategoryById() {
         //given
         Mockito.when(categoryRepository.findById(any())).thenReturn(Optional.of(CATEGORY));
         //when
@@ -51,7 +51,7 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenCategoryNotExist(){
+    void shouldThrowExceptionWhenCategoryNotExist() {
         //given
         Mockito.when(categoryRepository.findById(any())).thenReturn(Optional.empty());
         //when & then
@@ -60,7 +60,7 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldReturnAllCategories(){
+    void shouldReturnAllCategories() {
         //given
         Mockito.when(categoryRepository.findAll()).thenReturn(CATEGORIES);
         //when
@@ -70,9 +70,9 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldReturnCategoryByName(){
+    void shouldReturnCategoryByName() {
         //given
-        Mockito.when(categoryRepository.findByName(any())).thenReturn(CATEGORY);
+        Mockito.when(categoryRepository.findByName(any())).thenReturn(Optional.of(CATEGORY));
         //when
         Category result = categoryService.findByName("Computers");
         //then
@@ -80,7 +80,7 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldUpdateCategory(){
+    void shouldUpdateCategory() {
         //given
         Mockito.when(categoryRepository.existsById(any())).thenReturn(true);
         Mockito.when(categoryRepository.save(any())).thenReturn(CATEGORY_2_UPDATED);
@@ -91,9 +91,9 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldDeleteCategoryById(){
+    void shouldDeleteCategoryById() {
         //then
-        boolean result = categoryService.deleteById(CATEGORY_2_UPDATED);
+        boolean result = categoryService.deleteById(CATEGORY_ID);
         //when
         assertTrue(result);
     }

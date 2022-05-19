@@ -3,8 +3,9 @@ package pl.sda.shop.onlineshop.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.sda.shop.onlineshop.model.Category;
 
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+import java.util.Optional;
 
-    Category findByName(String categoryName);
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+    Optional<Category> findByName(String categoryName);
     boolean existByName(String name);
 }
