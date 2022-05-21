@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 public class Category {
     @Id
     private Long id;
-    private String categoryName;
+    private String name;
     @OneToOne
     private Category parent;
 }
