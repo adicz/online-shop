@@ -6,6 +6,6 @@ import pl.sda.shop.onlineshop.model.Category;
 import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    Optional<Category> findCategoryByName(String categoryName);
-    boolean existsCategoryByName(String categoryName);
+    Optional<Category> findCategoryByName(String name);
+    boolean existsCategoryByName(String name);
 }

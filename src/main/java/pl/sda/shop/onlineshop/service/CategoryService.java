@@ -18,7 +18,7 @@ public class CategoryService {
     public Category save(Category category) {
         if (categoryRepository.existsCategoryByName(category.getName())) {
             throw new CategoryAlreadyExists(String.format(
-                    "Category with categoryName '%s' already exist in database", category.getName()));
+                    "Category with name '%s' already exist in database", category.getName()));
         }
         return categoryRepository.save(category);
     }
@@ -34,7 +34,7 @@ public class CategoryService {
 
     public Category findByName(String name) {
         return categoryRepository.findCategoryByName(name).orElseThrow(
-                () -> new CategoryNotFoundException(String.format("Category with categoryName = %d not found in database", name)));
+                () -> new CategoryNotFoundException(String.format("Category with name = %d not found in database", name)));
     }
 
     public Category update(Category category) {
