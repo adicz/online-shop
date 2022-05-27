@@ -26,14 +26,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers("/**").denyAll()
-                //NON-LOGGED USERS
-                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
-                //LOGGED USER
-                .antMatchers(HttpMethod.GET, "/auth/current").fullyAuthenticated()
-                .antMatchers(HttpMethod.PATCH, "/user/{id}").hasAnyRole("USER", "ADMIN")
-                // ADMIN METHODS
-                .antMatchers("/user/*").hasRole("ADMIN");
+                .anyRequest().permitAll();
     }
 
     @Override
