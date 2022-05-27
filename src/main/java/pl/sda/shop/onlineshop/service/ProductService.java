@@ -1,13 +1,11 @@
 package pl.sda.shop.onlineshop.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -29,15 +27,15 @@ public class ProductService {
     public List<Product> findAll() {return productRepository.findAll();}
 
     public List<Product> findByCategory(Category category){
-        return productRepository.findByCategory(category);
+        return productRepository.findProductsByCategory(category);
     }
 
     public List<Product> findByBrand(String brand){
-        return productRepository.findByBrand(brand);
+        return productRepository.findProductsByBrand(brand);
     }
 
     public List<Product> findByTitle(String title){
-        return productRepository.findByTitle(title);
+        return productRepository.findProductsByTitle(title);
     }
 
     public Product update(Product product) {
