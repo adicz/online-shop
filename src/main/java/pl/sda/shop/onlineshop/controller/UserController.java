@@ -43,12 +43,6 @@ public class UserController {
                 .toList());
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<UserResponseDto> createUser(@Valid @RequestBody UserCreateDto userCreateDto) {
-        return ResponseEntity.ok(mapUserToUserResponseDto(userService.save(mapToUser(userCreateDto))));
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<UserResponseDto> patchUser(@RequestBody User user) {
         return ResponseEntity.ok(mapUserToUserResponseDto(userService.update(user)));

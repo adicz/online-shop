@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.sda.shop.onlineshop.exception.user.UserAlreadyExists;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.Address;
@@ -29,10 +31,15 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private UserService userService;
 
     private static final long USER_ID = 1L;
+    private static final String USER_USERNAME = "adicz";
+    private static final String ENCODED_PASSWORD = "encoded-password";
 
     private static User USER_1;
     private static User USER_1_UPDATED;
@@ -95,13 +102,33 @@ class UserServiceTest {
     }
 
     @Test
-    void shouldThrowExceptionIfUserDoesntExist() {
+    void shouldThrowExceptionIfUserByIdDoesntExist() {
         //GIVEN
         Mockito.when(userRepository.findById(any())).thenReturn(Optional.empty());
         //WHEN & THEN
         assertThrows(UserNotFoundException.class,
                 () -> userService.findById(USER_ID),
                 "User with id = 1 not found in database");
+    }
+
+    @Test
+    void shouldReturnUserByUsername() {
+        //GIVEN
+        Mockito.when(userRepository.findByUsername(any())).thenReturn(Optional.of(USER_1));
+        //WHEN
+        User result = userService.findByUsername(USER_USERNAME);
+        //THEN
+        assertEquals(USER_1, result);
+    }
+
+    @Test
+    void shouldThrowExceptionIfUserByUsernameDoesntExist() {
+        //GIVEN
+        Mockito.when(userRepository.findByUsername(any())).thenReturn(Optional.empty());
+        //WHEN & THEN
+        assertThrows(UserNotFoundException.class,
+                () -> userService.findByUsername(USER_USERNAME),
+                "User with username 'adicz' not found in database");
     }
 
     @Test
@@ -118,6 +145,7 @@ class UserServiceTest {
     void shouldAddNewUser() {
         //GIVEN
         Mockito.when(userRepository.existsByUsernameAndEmail(any(), any())).thenReturn(false);
+        Mockito.when(passwordEncoder.encode(any())).thenReturn(ENCODED_PASSWORD);
         Mockito.when(userRepository.save(any())).thenReturn(USER_RESPONSE_FROM_DATABASE);
         //WHEN
         User result = userService.save(USER_TO_SAVE_IN_DATABASE);
@@ -162,6 +190,26 @@ class UserServiceTest {
         boolean result = userService.deleteById(USER_ID);
         //THEN
         assertTrue(result);
+    }
+
+    @Test
+    void shouldLoadUserByUsername() {
+        //GIVEN
+        Mockito.when(userRepository.findByUsername(any())).thenReturn(Optional.of(USER_1));
+        //WHEN
+        UserDetails result = userService.loadUserByUsername(USER_USERNAME);
+        //THEN
+        assertEquals(USER_1, result);
+    }
+
+    @Test
+    void shouldThrowExceptionIfUserByIdCannotBeLoaded() {
+        //GIVEN
+        Mockito.when(userRepository.findByUsername(any())).thenReturn(Optional.empty());
+        //WHEN & THEN
+        assertThrows(UserNotFoundException.class,
+                () -> userService.loadUserByUsername(USER_USERNAME),
+                "User with username 'adicz' not found in database");
     }
 
 }
