@@ -17,7 +17,7 @@ public class ShoppingCartController {
         return ResponseEntity.ok(shoppingCartService.findById(id));
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<ShoppingCart> addShoppingCart(@RequestBody ShoppingCart shoppingCart) {
         return ResponseEntity.ok(shoppingCartService.save(shoppingCart));
     }

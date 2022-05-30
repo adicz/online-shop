@@ -73,6 +73,16 @@ class OrderServiceTest {
     }
 
     @Test
+    void shouldReturnAllOrdersByUser() {
+        //given
+        Mockito.when(orderRepository.findAllByUser(any())).thenReturn(Optional.of(ORDERS));
+        //then
+        List<Order> result = orderService.findAllByUser("Johnny");
+        //when
+        assertEquals(ORDERS, result);
+    }
+
+    @Test
     void shouldSaveOrder() {
         //given
         Mockito.when(orderRepository.save(any())).thenReturn(ORDER);

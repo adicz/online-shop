@@ -23,6 +23,11 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public List<Order> findAllByUser(String username) {
+        return orderRepository.findAllByUser(username).orElseThrow(
+                () -> new OrderNotFoundException(String.format("Order with username = %d not found in database", username)));
+    }
+
     public Order save(Order order) {
         return orderRepository.save(order);
     }
