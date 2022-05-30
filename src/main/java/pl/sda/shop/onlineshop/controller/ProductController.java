@@ -24,22 +24,22 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@RequestBody Long id) {
         productService.deleteById(id);
     }
 
-    @GetMapping("/{category}")
-    ResponseEntity<List<Product>> getProductByCategory(@PathVariable Category category) {
+    @GetMapping("/category")
+    ResponseEntity<List<Product>> getProductByCategory(@RequestBody Category category) {
         return ResponseEntity.ok(productService.findByCategory(category));
     }
 
-    @GetMapping("/{brand}")
-    ResponseEntity<List<Product>> getProductByBrand(@PathVariable String brand) {
+    @GetMapping("/brand")
+    ResponseEntity<List<Product>> getProductByBrand(@RequestBody String brand) {
         return ResponseEntity.ok(productService.findByBrand(brand));
     }
 
-    @GetMapping("/{title}")
-    ResponseEntity<List<Product>> getProductByTitle(@PathVariable String title) {
+    @GetMapping("/title")
+    ResponseEntity<List<Product>> getProductByTitle(@RequestBody String title) {
         return ResponseEntity.ok(productService.findByTitle(title));
     }
 }
