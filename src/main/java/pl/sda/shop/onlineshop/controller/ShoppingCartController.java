@@ -22,7 +22,7 @@ public class ShoppingCartController {
         return ResponseEntity.ok(shoppingCartService.save(shoppingCart));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable Long id) {
         return ResponseEntity.ok(shoppingCartService.deleteById(id));
     }
