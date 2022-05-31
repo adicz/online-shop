@@ -9,10 +9,11 @@ import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 
 import javax.persistence.*;
 
-@Entity(name = "`Order`")
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="`Order`")
 public class Order {
 
     @Id

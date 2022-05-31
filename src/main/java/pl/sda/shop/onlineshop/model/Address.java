@@ -15,5 +15,5 @@ public class Address {
     public String houseNumber;
     public String postalCode;
     public String city;
-    public String Country;
+    public String country;
 }

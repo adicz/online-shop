@@ -24,7 +24,7 @@ public class OrderService {
     }
 
     public List<Order> findAllByUser(String username) {
-        return orderRepository.findAllByUser(username).orElseThrow(
+        return orderRepository.findOrdersByUserUsername(username).orElseThrow(
                 () -> new OrderNotFoundException(String.format("Order with username = %d not found in database", username)));
     }
 

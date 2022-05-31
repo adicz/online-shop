@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.sda.shop.onlineshop.model.Order;
 import pl.sda.shop.onlineshop.service.OrderService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -23,6 +24,11 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<Order>> findAll() {
         return ResponseEntity.ok(orderService.findAll());
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<Order>> findAllUserOrders(Principal principal) {
+        return ResponseEntity.ok(orderService.findAllByUser(principal.getName()));
     }
 
     @PostMapping
