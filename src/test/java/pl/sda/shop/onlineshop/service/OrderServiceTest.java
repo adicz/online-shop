@@ -37,6 +37,8 @@ class OrderServiceTest {
     private static final Order ORDER = new Order(ORDER_ID, OrderStatus.ORDERED, DeliveryMethod.INPOST, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
     private static final List<Order> ORDERS = List.of(ORDER);
 
+    private static String username = "Johhny";
+
     @Mock
     OrderRepository orderRepository;
     @InjectMocks
@@ -77,7 +79,7 @@ class OrderServiceTest {
         //given
         Mockito.when(orderRepository.findAllByUser(any())).thenReturn(Optional.of(ORDERS));
         //then
-        List<Order> result = orderService.findAllByUser("Johnny");
+        List<Order> result = orderService.findAllByUser(username);
         //when
         assertEquals(ORDERS, result);
     }
