@@ -22,7 +22,7 @@ public class UserMapper {
                 user.getLastname(),
                 user.getEmail(),
                 user.getAddress(),
-                user.getImage(),
+                "http://localhost:8080/user/" + user.getId() + "/image",
                 user.getNotifyOption());
     }
 }

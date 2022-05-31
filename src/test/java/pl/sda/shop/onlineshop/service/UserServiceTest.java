@@ -185,6 +185,16 @@ class UserServiceTest {
     }
 
     @Test
+    void shouldUpdateUserImage() {
+        //GIVEN
+
+        //WHEN
+        //userService.updateUserImage();
+        //THEN
+
+    }
+
+    @Test
     void shouldRemoveUser() {
         //WHEN
         boolean result = userService.deleteById(USER_ID);

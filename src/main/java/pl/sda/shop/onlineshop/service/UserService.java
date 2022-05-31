@@ -7,12 +7,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import pl.sda.shop.onlineshop.exception.user.UserAlreadyExists;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.UserRepository;
 
-import java.security.Principal;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -49,6 +50,16 @@ public class UserService implements UserDetailsService {
 
     public User update(User user) {
         findById(user.getId());
+        return userRepository.save(user);
+    }
+
+    public User updateUserImage(MultipartFile multipartFile, Long userId) {
+        User user = findById(userId);
+        try {
+            user.setImage(multipartFile.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return userRepository.save(user);
     }
 
