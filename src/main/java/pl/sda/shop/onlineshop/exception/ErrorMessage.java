@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class ErrorMessage {
 
-    public String status = "error";
+    public String error;
     public String message;
-    public LocalDateTime date;
+    public LocalDateTime timeStamp;
 
-    public ErrorMessage(String message, LocalDateTime date) {
+    public ErrorMessage(String error, String message, LocalDateTime timeStamp) {
+        this.error = error;
         this.message = message;
-        this.date = date;
+        this.timeStamp = timeStamp;
     }
-
 }

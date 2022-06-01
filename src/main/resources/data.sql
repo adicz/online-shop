@@ -12,9 +12,11 @@ INSERT INTO `role` (name) values ('MODERATOR');
  adam -> USER
  */
 INSERT INTO `user_roles`(user_id, roles_id) VALUE (1, 2);
+INSERT INTO `user_roles`(user_id, roles_id) VALUE (1, 3);
 INSERT INTO `user_roles`(user_id, roles_id) VALUE (2, 1);
-INSERT INTO `user_roles`(user_id, roles_id) VALUE (2, 1);
-INSERT INTO `user_roles`(user_id, roles_id) VALUE (2, 1);
+INSERT INTO `user_roles`(user_id, roles_id) VALUE (2, 2);
+INSERT INTO `user_roles`(user_id, roles_id) VALUE (2, 3);
+INSERT INTO `user_roles`(user_id, roles_id) VALUE (3, 2);
 
 INSERT INTO `category`(id, name, parent_id) VALUE (1, 'Elektronika', null);
 INSERT INTO `category`(id, name, parent_id) VALUE (2, 'Telefony i Akcesoria', 1);
