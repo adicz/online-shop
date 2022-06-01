@@ -28,17 +28,22 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/{id}")
+    ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.findById(id));
+    }
+
+    @GetMapping("/category/{category}")
     ResponseEntity<List<Product>> getProductByCategory(@PathVariable Category category) {
         return ResponseEntity.ok(productService.findByCategory(category));
     }
 
-    @GetMapping("/{brand}")
+    @GetMapping("/brand/{brand}")
     ResponseEntity<List<Product>> getProductByBrand(@PathVariable String brand) {
         return ResponseEntity.ok(productService.findByBrand(brand));
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/title/{title}")
     ResponseEntity<List<Product>> getProductByTitle(@PathVariable String title) {
         return ResponseEntity.ok(productService.findByTitle(title));
     }

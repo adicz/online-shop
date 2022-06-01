@@ -44,6 +44,9 @@ INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Ka
 
 INSERT INTO `address` (`id`, `country`, `city`, `house_number`, `postal_code`, `street`) VALUES ('1', 'Poland', 'Warszawa', '6', '00 - 902', 'Wiejska');
 INSERT INTO `product_count` (`id`, `count`, `product_id`) VALUES ('1', '1', '1');
+INSERT INTO `product_count` (`id`, `count`, `product_id`) VALUES ('2', '2', '2');
 INSERT INTO `shopping_cart` (`id`, `total_price`) VALUES ('1', '289');
+INSERT INTO `shopping_cart` (`id`, `total_price`) VALUES ('2', '578');
 INSERT INTO `shopping_cart_product_counts` (`shopping_cart_id`, `product_counts_id`) VALUES ('1', '1');
+INSERT INTO `shopping_cart_product_counts` (`shopping_cart_id`, `product_counts_id`) VALUES ('2', '2');
 INSERT INTO `order` (`id`, `delivery_method`, `order_status`, `payment_method`, `address_id`, `shopping_cart_id`, `user_id`) VALUES ('1', 'DHL', 'READY', 'BLIK', '1', '1', '1');
