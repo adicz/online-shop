@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -39,7 +40,8 @@ public class User implements UserDetails {
     public String email;
     @OneToOne
     public Address address;
-    public String image;
+    @Column(columnDefinition = "MEDIUMBLOB")
+    public byte[] image;
     @Enumerated(EnumType.STRING)
     public NotifyOption notifyOption;
     @ManyToMany(fetch = FetchType.EAGER)

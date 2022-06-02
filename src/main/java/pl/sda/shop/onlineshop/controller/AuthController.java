@@ -27,9 +27,10 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserResponseDto> signUp(@Valid @RequestBody UserCreateDto userCreateDto) {
-        return ResponseEntity.ok(mapUserToUserResponseDto(userService.save(mapToUser(userCreateDto))));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(mapUserToUserResponseDto(userService.save(mapToUser(userCreateDto))));
     }
 
     @GetMapping("/current")
