@@ -3,7 +3,6 @@ package pl.sda.shop.onlineshop.service.validation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.sda.shop.onlineshop.exception.product.ProductNotFoundExceptions;
-import pl.sda.shop.onlineshop.exception.shoppingCart.PriceNotValidException;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.ProductCount;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
@@ -15,6 +14,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class ShoppingCartValidator {
+    //todo validate availability of the products
     private final ProductRepository productRepository;
 
     public boolean isValid(ShoppingCart shoppingCart) {

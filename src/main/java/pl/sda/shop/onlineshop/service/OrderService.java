@@ -6,6 +6,7 @@ import pl.sda.shop.onlineshop.exception.order.OrderNotFoundException;
 import pl.sda.shop.onlineshop.model.Order;
 import pl.sda.shop.onlineshop.repository.OrderRepository;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -28,7 +29,7 @@ public class OrderService {
                 () -> new OrderNotFoundException(String.format("Order with username = %d not found in database", username)));
     }
 
-    public Order save(Order order) {
+    public Order save(Order order, String username) {
         return orderRepository.save(order);
     }
 

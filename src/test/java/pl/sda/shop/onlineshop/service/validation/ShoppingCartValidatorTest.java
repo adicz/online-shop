@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
@@ -57,7 +58,7 @@ class ShoppingCartValidatorTest {
     @Test
     void shouldReturnTrueIfPriceIsCorrect() {
         //given
-
+        Mockito.when(shoppingCartValidator.isValid(SHOPPING_CART));
         //when
         boolean result = shoppingCartValidator.isValid(SHOPPING_CART);
         //then
@@ -67,6 +68,7 @@ class ShoppingCartValidatorTest {
     @Test
     void shouldReturnFalseIfPriceIsNotCorrect() {
         //given
+        Mockito.when(shoppingCartValidator.isValid(SHOPPING_CART_2));
         //when
         boolean result = shoppingCartValidator.isValid(SHOPPING_CART_2);
         //then
