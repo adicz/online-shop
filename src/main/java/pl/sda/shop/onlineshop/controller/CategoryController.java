@@ -35,6 +35,11 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findByName(categoryName));
     }
 
+    @GetMapping("/parent")
+    public ResponseEntity<List<Category>> findByParent(@RequestParam Category parent) {
+        return ResponseEntity.ok(categoryService.findByParent(parent));
+    }
+
     @PostMapping("/update")
     public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
         return ResponseEntity.ok(categoryService.update(category));
