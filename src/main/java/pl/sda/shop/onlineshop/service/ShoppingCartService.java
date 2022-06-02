@@ -6,12 +6,13 @@ import pl.sda.shop.onlineshop.exception.shoppingCart.PriceNotValidException;
 import pl.sda.shop.onlineshop.exception.shoppingCart.ShoppingCartNotFoundException;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
 import pl.sda.shop.onlineshop.repository.ShoppingCartRepository;
+import pl.sda.shop.onlineshop.service.validation.ShoppingCartValidator;
 
-import static pl.sda.shop.onlineshop.service.validation.ShoppingCartValidator.isValid;
 
 @Service
 @RequiredArgsConstructor
 public class ShoppingCartService {
+    private final ShoppingCartValidator shoppingCartValidator;
     private final ShoppingCartRepository shoppingCartRepository;
 
     public ShoppingCart findById(Long id) {
@@ -20,7 +21,7 @@ public class ShoppingCartService {
     }
 
     public ShoppingCart save(ShoppingCart shoppingCart) {
-        if (isValid(shoppingCart)){
+        if (shoppingCartValidator.isValid(shoppingCart)){
             return shoppingCartRepository.save(shoppingCart);
         }
             throw new PriceNotValidException(String.format("Price not valid"));

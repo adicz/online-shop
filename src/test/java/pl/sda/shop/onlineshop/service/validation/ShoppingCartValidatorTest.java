@@ -1,19 +1,23 @@
 package pl.sda.shop.onlineshop.service.validation;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.ProductCount;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
+import pl.sda.shop.onlineshop.repository.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import static pl.sda.shop.onlineshop.service.validation.ShoppingCartValidator.isValid;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 class ShoppingCartValidatorTest {
 
 
@@ -44,18 +48,27 @@ class ShoppingCartValidatorTest {
     private static final ShoppingCart SHOPPING_CART = new ShoppingCart(1l, PRODUCTS_COUNTS, SHOPPING_CART_PRICE);
     private static final ShoppingCart SHOPPING_CART_2 = new ShoppingCart(1l, PRODUCTS_COUNTS, SHOPPING_CART_PRICE_2);
 
+
+    @Mock
+    ProductRepository productRepository;
+    @InjectMocks
+    ShoppingCartValidator shoppingCartValidator;
+
     @Test
     void shouldReturnTrueIfPriceIsCorrect() {
+        //given
+
         //when
-        boolean result = isValid(SHOPPING_CART);
+        boolean result = shoppingCartValidator.isValid(SHOPPING_CART);
         //then
         assertTrue(result);
     }
 
     @Test
     void shouldReturnFalseIfPriceIsNotCorrect() {
+        //given
         //when
-        boolean result = isValid(SHOPPING_CART_2);
+        boolean result = shoppingCartValidator.isValid(SHOPPING_CART_2);
         //then
         assertFalse(result);
     }
