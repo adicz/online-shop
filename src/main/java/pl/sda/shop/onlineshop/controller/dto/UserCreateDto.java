@@ -15,14 +15,14 @@ public class UserCreateDto {
 
     @NotNull
     @Length(min = 4)
-    public String username;
+    private String username;
 
     @NotNull
     @Length(min = 6)
-    public String password;
+    private String password;
 
     @NotNull
     @Email
-    public String email;
+    private String email;
 
 }

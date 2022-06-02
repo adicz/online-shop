@@ -6,19 +6,22 @@ import lombok.NoArgsConstructor;
 import pl.sda.shop.onlineshop.model.Address;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDto {
+public class UserPatchDto {
 
-    private Long id;
-    private String username;
+    @NotNull
     private String firstname;
+    @NotNull
     private String lastname;
+    @NotNull
     private String email;
+    @NotNull
     private Address address;
-    private String image;
+    @NotNull
     private NotifyOption notifyOption;
-    private String roles;
 
 }
