@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.sda.shop.onlineshop.model.Address;
+import pl.sda.shop.onlineshop.model.ShippingMethod;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
-import pl.sda.shop.onlineshop.model.enumerated.DeliveryMethod;
 import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 
 import javax.validation.constraints.NotNull;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class OrderCreateDto {
 
     @NotNull
-    private DeliveryMethod deliveryMethod;
+    private ShippingMethod shippingMethod;
 
     @NotNull
     private PaymentMethod paymentMethod;

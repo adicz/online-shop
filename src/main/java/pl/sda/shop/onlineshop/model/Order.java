@@ -3,7 +3,6 @@ package pl.sda.shop.onlineshop.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.sda.shop.onlineshop.model.enumerated.DeliveryMethod;
 import pl.sda.shop.onlineshop.model.enumerated.OrderStatus;
 import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 

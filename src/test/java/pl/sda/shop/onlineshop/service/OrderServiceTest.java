@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.exception.order.OrderNotFoundException;
 import pl.sda.shop.onlineshop.model.*;
-import pl.sda.shop.onlineshop.model.enumerated.DeliveryMethod;
 import pl.sda.shop.onlineshop.model.enumerated.OrderStatus;
 import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 import pl.sda.shop.onlineshop.repository.OrderRepository;
@@ -33,7 +32,8 @@ class OrderServiceTest {
     private static final ShoppingCart SHOPPING_CART = new ShoppingCart(1l, PRODUCTS_COUNTS, SHOPPING_CART_PRICE);
     private static final Address ADDRESS = new Address();
     private static final User USER = new User();
-    private static final Order ORDER = new Order(ORDER_ID, OrderStatus.ORDERED, DeliveryMethod.INPOST, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
+    private static final ShippingMethod SHIPPING_METHOD = new ShippingMethod(1L, "DHL", BigDecimal.valueOf(10.00));
+    private static final Order ORDER = new Order(ORDER_ID, OrderStatus.ORDERED, SHIPPING_METHOD, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
     private static final List<Order> ORDERS = List.of(ORDER);
 
     private static String USERNAME = "Johhny";
@@ -54,7 +54,7 @@ class OrderServiceTest {
     }
 
     @Test
-    void shouldThrowExceptionIfOrderDoesntExist(){
+    void shouldThrowExceptionIfOrderDoesntExist() {
         //given
         Mockito.when(orderRepository.findById(any())).thenReturn(Optional.empty());
         //then&when
