@@ -29,7 +29,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.findAll());
     }
 
-    @GetMapping("/user")
+    @GetMapping("/users")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'MODERATOR')")
     public ResponseEntity<List<Order>> findAllUserOrders(Principal principal) {
         return ResponseEntity.ok(orderService.findAllByUser(principal.getName()));

@@ -23,8 +23,8 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @Enumerated(EnumType.STRING)
-    private DeliveryMethod deliveryMethod;
+    @OneToOne
+    private ShippingMethod shippingMethod;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;

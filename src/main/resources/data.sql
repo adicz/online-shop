@@ -51,4 +51,5 @@ INSERT INTO `shopping_cart` (`id`, `total_price`) VALUES ('1', '289');
 INSERT INTO `shopping_cart` (`id`, `total_price`) VALUES ('2', '578');
 INSERT INTO `shopping_cart_product_counts` (`shopping_cart_id`, `product_counts_id`) VALUES ('1', '1');
 INSERT INTO `shopping_cart_product_counts` (`shopping_cart_id`, `product_counts_id`) VALUES ('2', '2');
-INSERT INTO `order` (`id`, `delivery_method`, `order_status`, `payment_method`, `address_id`, `shopping_cart_id`, `user_id`) VALUES ('1', 'DHL', 'READY', 'BLIK', '1', '1', '1');
+INSERT INTO `shipping_method` (`id`, `name`, `price`) VALUES ('1', 'DHL', '10');
+INSERT INTO `order` (`id`, `shipping_method_id`, `order_status`, `payment_method`, `address_id`, `shopping_cart_id`, `user_id`) VALUES ('1', '1', 'READY', 'BLIK', '1', '1', '1');
