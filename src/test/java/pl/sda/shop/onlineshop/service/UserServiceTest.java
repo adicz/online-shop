@@ -11,7 +11,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.sda.shop.onlineshop.controller.dto.UserPatchDto;
-import pl.sda.shop.onlineshop.exception.user.UserAlreadyExists;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExistsException;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.Address;
 import pl.sda.shop.onlineshop.model.Role;
@@ -161,7 +161,7 @@ class UserServiceTest {
     @Test
     void shouldAddNewUser() {
         //GIVEN
-        Mockito.when(userRepository.existsByUsernameAndEmail(any(), any())).thenReturn(false);
+        Mockito.when(userRepository.existsByUsernameOrEmail(any(), any())).thenReturn(false);
         Mockito.when(passwordEncoder.encode(any())).thenReturn(ENCODED_PASSWORD);
         Mockito.when(userRepository.save(any())).thenReturn(USER_RESPONSE_FROM_DATABASE);
         Mockito.when(roleRepository.findByName(any())).thenReturn(Optional.of(DEFAULT_ROLE));
@@ -174,9 +174,9 @@ class UserServiceTest {
     @Test
     void shouldThrowExceptionIfUserExistInDatabase() {
         //GIVEN
-        Mockito.when(userRepository.existsByUsernameAndEmail(any(), any())).thenReturn(true);
+        Mockito.when(userRepository.existsByUsernameOrEmail(any(), any())).thenReturn(true);
         //WHEN & THEN
-        assertThrows(UserAlreadyExists.class,
+        assertThrows(UserAlreadyExistsException.class,
                 () -> userService.save(USER_TO_SAVE_IN_DATABASE),
                 "User with username 'adicz' or email 'adicz@gmail.com' already exist in database");
     }

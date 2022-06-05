@@ -2,7 +2,7 @@ package pl.sda.shop.onlineshop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.sda.shop.onlineshop.exception.category.CategoryAlreadyExists;
+import pl.sda.shop.onlineshop.exception.category.CategoryAlreadyExistsException;
 import pl.sda.shop.onlineshop.exception.category.CategoryNotFoundException;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.repository.CategoryRepository;
@@ -17,15 +17,14 @@ public class CategoryService {
 
     public Category save(Category category) {
         if (categoryRepository.existsCategoryByName(category.getName())) {
-            throw new CategoryAlreadyExists(String.format(
-                    "Category with name '%s' already exist in database", category.getName()));
+            throw new CategoryAlreadyExistsException(category.getName());
         }
         return categoryRepository.save(category);
     }
 
     public Category findById(Long id) {
-        return categoryRepository.findById(id).orElseThrow(
-                () -> new CategoryNotFoundException(String.format("Category with id = %d not found in database", id)));
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new CategoryNotFoundException(id));
     }
 
     public List<Category> findAll() {
@@ -33,8 +32,8 @@ public class CategoryService {
     }
 
     public Category findByName(String name) {
-        return categoryRepository.findCategoryByName(name).orElseThrow(
-                () -> new CategoryNotFoundException(String.format("Category with name = %d not found in database", name)));
+        return categoryRepository.findCategoryByName(name)
+                .orElseThrow(() -> new CategoryNotFoundException(name));
     }
 
     public Category update(Category category) {

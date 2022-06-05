@@ -11,12 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sda.shop.onlineshop.controller.dto.UserPatchDto;
 import pl.sda.shop.onlineshop.exception.role.RoleNotFoundException;
-import pl.sda.shop.onlineshop.exception.user.UserAlreadyExists;
+import pl.sda.shop.onlineshop.exception.user.ContentTypeException;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExistsException;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.Role;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.RoleRepository;
 import pl.sda.shop.onlineshop.repository.UserRepository;
+import pl.sda.shop.onlineshop.utils.ImageUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,18 +37,20 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ImageUtils imageUtils;
 
     private final String USER_DEFAULT_ROLE = "USER";
     private final String DEFAULT_IMAGE_LOCALIZATION = "\\src\\main\\resources\\user.png";
+    private final String IMAGE_FILE_TYPE = "image/jpeg";
 
     public User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(String.format("User with id = %d not found in database", id)));
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(String.format("User with username '%s' not found in database", username)));
+                .orElseThrow(() -> new UserNotFoundException(username));
     }
 
     public List<User> findAll() {
@@ -54,19 +58,18 @@ public class UserService implements UserDetailsService {
     }
 
     public User save(User user) {
-        if (userRepository.existsByUsernameAndEmail(user.getUsername(), user.getEmail())) {
-            throw new UserAlreadyExists(String.format(
-                    "User with username '%s' or email '%s' already exist in database",
-                    user.getUsername(),
-                    user.getEmail()));
+        if (userRepository.existsByUsernameOrEmail(user.getUsername(), user.getEmail())) {
+            throw new UserAlreadyExistsException(user.getUsername(), user.getEmail());
         }
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-            Role userRole = roleRepository.findByName(USER_DEFAULT_ROLE)
-                    .orElseThrow(() -> new RoleNotFoundException(String.format("Role with name '%s' not found in database", USER_DEFAULT_ROLE)));
-            user.setRoles(List.of(userRole));
-        }
+        addToUserDefaultRole(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    private void addToUserDefaultRole(User user) {
+        Role userRole = roleRepository.findByName(USER_DEFAULT_ROLE)
+                .orElseThrow(() -> new RoleNotFoundException(USER_DEFAULT_ROLE));
+        user.setRoles(List.of(userRole));
     }
 
     public User update(UserPatchDto userPatchDto, Long id) {
@@ -76,6 +79,10 @@ public class UserService implements UserDetailsService {
     }
 
     public User updateUserImage(MultipartFile multipartFile, Long userId) {
+        String contentType = multipartFile.getContentType();
+        if(!IMAGE_FILE_TYPE.equals(contentType)) {
+            throw new ContentTypeException(contentType);
+        }
         User user = findById(userId);
         parseUserImage(multipartFile, user);
         return userRepository.save(user);
@@ -83,7 +90,9 @@ public class UserService implements UserDetailsService {
 
     private void parseUserImage(MultipartFile multipartFile, User user) {
         try {
-            user.setImage(multipartFile.getBytes());
+            byte[] image = multipartFile.getBytes();
+            byte[] croppedImage = imageUtils.cropImageSquare(image);
+            user.setImage(croppedImage);
         } catch (IOException e) {
             log.error("Couldn't parse user image", e);
         }
@@ -120,6 +129,6 @@ public class UserService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(String.format("User with username = %s not found in database", username)));
+                .orElseThrow(() -> new UserNotFoundException(username));
     }
 }

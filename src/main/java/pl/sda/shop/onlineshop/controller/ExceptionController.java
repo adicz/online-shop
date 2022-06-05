@@ -3,11 +3,24 @@ package pl.sda.shop.onlineshop.controller;
 import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.sda.shop.onlineshop.exception.ErrorMessage;
+import pl.sda.shop.onlineshop.exception.ValidationErrorMessage;
+import pl.sda.shop.onlineshop.exception.category.CategoryAlreadyExistsException;
+import pl.sda.shop.onlineshop.exception.category.CategoryNotFoundException;
+import pl.sda.shop.onlineshop.exception.role.RoleNotFoundException;
+import pl.sda.shop.onlineshop.exception.user.ContentTypeException;
+import pl.sda.shop.onlineshop.exception.user.UserAlreadyExistsException;
+import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestControllerAdvice
 public class ExceptionController {
@@ -20,6 +33,65 @@ public class ExceptionController {
                         HttpStatus.PAYLOAD_TOO_LARGE.toString(),
                         e.getMessage(),
                         LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(ContentTypeException.class)
+    public ResponseEntity<ErrorMessage> wrongFileTypeException(ContentTypeException e) {
+        return ResponseEntity
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(new ErrorMessage(
+                        HttpStatus.UNPROCESSABLE_ENTITY.toString(),
+                        e.getMessage(),
+                        LocalDateTime.now()));
+    }
+
+    @ExceptionHandler({
+            CategoryNotFoundException.class,
+            RoleNotFoundException.class,
+            UserNotFoundException.class})
+    public ResponseEntity<ErrorMessage> notFoundException(RuntimeException e) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorMessage(
+                        HttpStatus.NOT_FOUND.toString(),
+                        e.getMessage(),
+                        LocalDateTime.now()));
+    }
+
+    @ExceptionHandler({
+            UserAlreadyExistsException.class,
+            CategoryAlreadyExistsException.class
+    })
+    public ResponseEntity<ErrorMessage> alreadyExistException(RuntimeException e) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new ErrorMessage(
+                        HttpStatus.CONFLICT.toString(),
+                        e.getMessage(),
+                        LocalDateTime.now()));
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public ResponseEntity<ValidationErrorMessage> validationErrorException(MethodArgumentNotValidException e) {
+        List<String> details = getAllErrorsDetails(e);
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new ValidationErrorMessage(
+                        HttpStatus.CONFLICT.toString(),
+                        "Validation error, see details",
+                        LocalDateTime.now(),
+                        details
+                ));
+    }
+
+    private List<String> getAllErrorsDetails(MethodArgumentNotValidException e) {
+        List<String> details = new ArrayList<>();
+        e.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            details.add(fieldName + ": " + errorMessage);
+        });
+        return details;
     }
 
 }
