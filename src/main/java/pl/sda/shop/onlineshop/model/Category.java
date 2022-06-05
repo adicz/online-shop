@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -18,6 +15,6 @@ public class Category {
     private Long id;
     @GeneratedValue
     private String name;
-    @OneToOne
+    @ManyToOne
     private Category parent;
 }

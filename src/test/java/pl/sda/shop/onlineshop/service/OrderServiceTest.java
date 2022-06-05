@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.exception.order.OrderNotFoundException;
-import pl.sda.shop.onlineshop.exception.shoppingCart.ShoppingCartNotFoundException;
 import pl.sda.shop.onlineshop.model.*;
 import pl.sda.shop.onlineshop.model.enumerated.DeliveryMethod;
 import pl.sda.shop.onlineshop.model.enumerated.OrderStatus;
@@ -37,7 +36,7 @@ class OrderServiceTest {
     private static final Order ORDER = new Order(ORDER_ID, OrderStatus.ORDERED, DeliveryMethod.INPOST, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
     private static final List<Order> ORDERS = List.of(ORDER);
 
-    private static String username = "Johhny";
+    private static String USERNAME = "Johhny";
 
     @Mock
     OrderRepository orderRepository;
@@ -79,7 +78,7 @@ class OrderServiceTest {
         //given
         Mockito.when(orderRepository.findOrdersByUserUsername(any())).thenReturn(Optional.of(ORDERS));
         //then
-        List<Order> result = orderService.findAllByUser(username);
+        List<Order> result = orderService.findAllByUser(USERNAME);
         //when
         assertEquals(ORDERS, result);
     }
@@ -89,7 +88,7 @@ class OrderServiceTest {
         //given
         Mockito.when(orderRepository.save(any())).thenReturn(ORDER);
         //then
-        Order result = orderService.save(ORDER);
+        Order result = orderService.save(ORDER, USERNAME);
         //when
         assertEquals(ORDER, result);
     }

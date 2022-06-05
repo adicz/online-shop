@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.exception.shoppingCart.ShoppingCartNotFoundException;
-import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.ProductCount;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
