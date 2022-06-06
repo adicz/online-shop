@@ -15,7 +15,7 @@ public class ShippingMethodService {
 
     public ShippingMethod findById(Long id) {
         return shippingMethodRepository.findById(id).orElseThrow(
-                () -> new ShippingMethodNotFoundException(String.format("Shipping method with id = %d not fund", id)));
+                () -> new ShippingMethodNotFoundException(id));
     }
 
     public List<ShippingMethod> findAll() {

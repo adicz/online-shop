@@ -17,7 +17,7 @@ public class ShoppingCartService {
 
     public ShoppingCart findById(Long id) {
         return shoppingCartRepository.findById(id).orElseThrow(
-                () -> new ShoppingCartNotFoundException(String.format("ShoppingCart with id = %d not found in database", id)));
+                () -> new ShoppingCartNotFoundException(id));
     }
 
     public ShoppingCart save(ShoppingCart shoppingCart) {

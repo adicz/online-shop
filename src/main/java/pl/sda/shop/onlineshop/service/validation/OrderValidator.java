@@ -3,7 +3,7 @@ package pl.sda.shop.onlineshop.service.validation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.sda.shop.onlineshop.exception.product.ProductNotAvailable;
-import pl.sda.shop.onlineshop.exception.product.ProductNotFoundExceptions;
+import pl.sda.shop.onlineshop.exception.product.ProductNotFoundException;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.ProductCount;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
@@ -22,7 +22,7 @@ public class OrderValidator {
         //for each
         for (ProductCount productCount : productCountList) {
             Product product = productCount.getProduct();
-            Product productFromDB = productRepository.findById(product.getId()).orElseThrow(() -> new ProductNotFoundExceptions("Product not found exception"));
+            Product productFromDB = productRepository.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getId()));
             if (productFromDB.getAvailability() - productCount.getCount() < 0) {
                 throw new ProductNotAvailable("Product not available at the moment");
             }

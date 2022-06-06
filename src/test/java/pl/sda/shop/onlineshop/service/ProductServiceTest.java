@@ -28,7 +28,7 @@ class ProductServiceTest {
             1L,
             "shoes",
             "white running shoes",
-            "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
+            null,
             100,
             new Category(),
             BigDecimal.valueOf(50.00),
@@ -38,7 +38,7 @@ class ProductServiceTest {
             2L,
             "shoes",
             "white training shoes",
-            "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
+            null,
             100,
             new Category(),
             BigDecimal.valueOf(50.00),
@@ -70,15 +70,6 @@ class ProductServiceTest {
         //THEN
         assertEquals(PRODUCT, result);
     }
-    @Test
-    void shouldReturnAllProducts() {
-        //GIVEN
-        Mockito.when(productRepository.findAll()).thenReturn(PRODUCTS);
-        //when
-        List<Product> result = productService.findAll();
-        //then
-        assertEquals(PRODUCTS, result);
-    }
 
     @Test
     void shouldThrowExceptionIfProductDoesntExist() {
@@ -92,8 +83,4 @@ class ProductServiceTest {
                         " not fount in database");
     }
 
-    @Test
-    void shouldUpdateProduct() {
-
-    }
 }
