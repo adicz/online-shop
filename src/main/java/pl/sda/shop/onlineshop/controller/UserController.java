@@ -19,11 +19,6 @@ import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
 import pl.sda.shop.onlineshop.controller.mapper.UserMapper;
 import pl.sda.shop.onlineshop.service.UserService;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import static pl.sda.shop.onlineshop.controller.mapper.UserMapper.mapUserToUserResponseDto;
