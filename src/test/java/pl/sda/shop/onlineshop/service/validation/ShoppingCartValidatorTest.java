@@ -16,7 +16,8 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class ShoppingCartValidatorTest {
@@ -47,7 +48,7 @@ class ShoppingCartValidatorTest {
     private static List<ProductCount> PRODUCTS_COUNTS = Arrays.asList(PRODUCT_COUNT, PRODUCT_COUNT_2);
 
     private static final ShoppingCart SHOPPING_CART = new ShoppingCart(1l, PRODUCTS_COUNTS, SHOPPING_CART_PRICE);
-    private static final ShoppingCart SHOPPING_CART_2 = new ShoppingCart(1l, PRODUCTS_COUNTS, SHOPPING_CART_PRICE_2);
+    private static final ShoppingCart SHOPPING_CART_2 = new ShoppingCart(2l, PRODUCTS_COUNTS, SHOPPING_CART_PRICE_2);
 
 
     @Mock

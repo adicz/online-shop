@@ -14,6 +14,8 @@ import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 import pl.sda.shop.onlineshop.repository.OrderRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,8 @@ class OrderServiceTest {
     private static final Address ADDRESS = new Address();
     private static final User USER = new User();
     private static final ShippingMethod SHIPPING_METHOD = new ShippingMethod(1L, "DHL", BigDecimal.valueOf(10.00));
-    private static final Order ORDER = new Order(ORDER_ID, OrderStatus.ORDERED, SHIPPING_METHOD, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
+    private static LocalDateTime localDateTime;
+    private static final Order ORDER = new Order(ORDER_ID, localDateTime, OrderStatus.ORDERED, SHIPPING_METHOD, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
     private static final List<Order> ORDERS = List.of(ORDER);
 
     private static String USERNAME = "Johhny";

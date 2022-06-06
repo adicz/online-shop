@@ -9,24 +9,25 @@ import pl.sda.shop.onlineshop.model.ProductCount;
 import pl.sda.shop.onlineshop.model.ShoppingCart;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class ShoppingCartValidator {
+public class OrderValidator {
     //todo validate availability of the products
     private final ProductRepository productRepository;
 
-    public boolean isValid(ShoppingCart shoppingCart) {
+    public boolean isAvailable(ShoppingCart shoppingCart) {
         List<ProductCount> productCountList = shoppingCart.getProductCounts();
-        BigDecimal productsPrice = BigDecimal.valueOf(0);
         //for each
         for (ProductCount productCount : productCountList) {
             Product product = productCount.getProduct();
             Product productFromDB = productRepository.findById(product.getId()).orElseThrow(() -> new ProductNotFoundExceptions("Product not found exception"));
-            productsPrice = productsPrice.add(productFromDB.getPrice().multiply(BigDecimal.valueOf(productCount.getCount())));
+            if (productFromDB.getAvailability() - productCount.getCount() < 0) {
+                throw new ProductNotAvailable("Product not available at the moment");
+            }
+            productFromDB.setAvailability(productFromDB.getAvailability() - productCount.getCount());
         }
-        return shoppingCart.getTotalPrice().compareTo(productsPrice) == 0;
+        return true;
     }
 }
