@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pl.sda.shop.onlineshop.exception.product.ProductNotFoundException;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
@@ -13,10 +14,10 @@ import pl.sda.shop.onlineshop.repository.ProductRepository;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +33,8 @@ class ProductServiceTest {
             100,
             new Category(),
             BigDecimal.valueOf(50.00),
-            "NIKE");
+            "NIKE",
+            1);
 
     private static final Product PRODUCT_2 = new Product(
             2L,
@@ -42,7 +44,8 @@ class ProductServiceTest {
             100,
             new Category(),
             BigDecimal.valueOf(50.00),
-            "NIKE");
+            "NIKE",
+            1);
 
     private static final List<Product> PRODUCTS = Arrays.asList(PRODUCT, PRODUCT_2);
 
@@ -66,7 +69,7 @@ class ProductServiceTest {
         //GIVEN
         Mockito.when(productRepository.save(any())).thenReturn(PRODUCT);
         //WHEN
-        Product result = productService.addProduct(PRODUCT);
+        Product result = productService.save(PRODUCT);
         //THEN
         assertEquals(PRODUCT, result);
     }
@@ -76,11 +79,8 @@ class ProductServiceTest {
         //GIVEN
         Mockito.when(productRepository.findById(any())).thenReturn(Optional.empty());
         //WHEN & THEN
-        assertThrows(NoSuchElementException.class,
-                () -> productService.findById(PRODUCT_ID),
-                "Product with id = " +
-                        PRODUCT_ID +
-                        " not fount in database");
+        assertThrows(ProductNotFoundException.class,
+                () -> productService.findById(PRODUCT_ID));
     }
 
 }

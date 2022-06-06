@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import pl.sda.shop.onlineshop.controller.dto.UserPatchDto;
-import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserPatchDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserResponseDto;
 import pl.sda.shop.onlineshop.controller.mapper.UserMapper;
 import pl.sda.shop.onlineshop.service.UserService;
 

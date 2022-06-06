@@ -31,8 +31,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public List<Category> findByParent(Category category){
-        return  categoryRepository.findCategoryByParent(category);
+    public List<Category> findByParent(Category category) {
+        return categoryRepository.findCategoryByParent(category);
     }
 
     public Category findByName(String name) {

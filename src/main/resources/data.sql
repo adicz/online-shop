@@ -32,17 +32,17 @@ INSERT INTO `category`(id, name, parent_id) VALUE (11, 'Części do laptopów', 
 INSERT INTO `category`(id, name, parent_id) VALUE (12, 'Drukarki i skanery', 3);
 INSERT INTO `category`(id, name, parent_id) VALUE (13, 'Dyski i pamięci przenośne', 3);
 
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Drukarka wielofunkcyjna atramentowa (kolor) HP 2720e', 10, 12, 289, 'HP');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Drukarka wielofunkcyjna atramentowa (kolor) Canon TS3350', 14, 12, 279, 'Canon');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Drukarka 3D Creality Ender-3 V2', 3, 12, 1035.00, 'Creality');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Drukarka jednofunkcyjna atramentowa (kolor) HP OfficeJet 200', 45, 12, 399, 'HP');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Drukarka wielofunkcyjna laserowa (mono) Brother DCP-1512E', 1, 12, 797, 'Brother');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('UCHWYT NA NAWIGACJĘ TELEFON SZYBĘ DESKĘ KOKPIT GPS', 1, 7, 32, 'Noname');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('TRANSMITER FM Bluetooth + Zestaw Głośnomówiący', 7, 7, 49, 'Noname');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('BASEUS POWER BANK USB-C DO LAPTOPA 65W - 20000mAh', 2, 9, 249.50, 'Baseus');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('SSD GOODRAM CX400 256GB SATA III 2,5 RETAIL', 100, 13, 129.69, 'GOODRAM');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('PAMIĘĆ RAM 8GB PC3L DDR3L SO-DIMM 12800S 1600MHz', 23, 11, 98, 'Noname');
-INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Kabel HDMI Jsaux CV0035-3M 3 m czarny', 50, 10, 40, 'Jsaux');
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('Drukarka wielofunkcyjna atramentowa (kolor) HP 2720e', 10, 12, 289, 'HP', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('Drukarka wielofunkcyjna atramentowa (kolor) Canon TS3350', 14, 12, 279, 'Canon', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('Drukarka 3D Creality Ender-3 V2', 3, 12, 1035.00, 'Creality', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('Drukarka jednofunkcyjna atramentowa (kolor) HP OfficeJet 200', 45, 12, 399, 'HP', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('Drukarka wielofunkcyjna laserowa (mono) Brother DCP-1512E', 1, 12, 797, 'Brother', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('UCHWYT NA NAWIGACJĘ TELEFON SZYBĘ DESKĘ KOKPIT GPS', 1, 7, 32, 'Noname', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('TRANSMITER FM Bluetooth + Zestaw Głośnomówiący', 7, 7, 49, 'Noname', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('BASEUS POWER BANK USB-C DO LAPTOPA 65W - 20000mAh', 2, 9, 249.50, 'Baseus', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('SSD GOODRAM CX400 256GB SATA III 2,5 RETAIL', 100, 13, 129.69, 'GOODRAM', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('PAMIĘĆ RAM 8GB PC3L DDR3L SO-DIMM 12800S 1600MHz', 23, 11, 98, 'Noname', 1);
+INSERT INTO `product`(title, availability, category_id, price, brand, version) VALUE ('Kabel HDMI Jsaux CV0035-3M 3 m czarny', 50, 10, 40, 'Jsaux', 1);
 
 INSERT INTO `address` (id, country, city, house_number, postal_code, street) VALUES (1, 'Poland', 'Warszawa', '6A', '00 - 902', 'Wiejska');
 INSERT INTO `product_count` (id, count, product_id) VALUES (1, 1, 1);
@@ -51,5 +51,11 @@ INSERT INTO `shopping_cart` (id, total_price) VALUES (1, 289);
 INSERT INTO `shopping_cart` (id, total_price) VALUES (2, 578);
 INSERT INTO `shopping_cart_product_counts` (shopping_cart_id, product_counts_id) VALUES (1, 1);
 INSERT INTO `shopping_cart_product_counts` (shopping_cart_id, product_counts_id) VALUES (2, 2);
-INSERT INTO `shipping_method` (id, name, price) VALUES (1, 'DHL', 10);
+
+INSERT INTO `shipping_method` (id, name, price) VALUES (1, 'DHL', 20);
+INSERT INTO `shipping_method` (id, name, price) VALUES (2, 'INPOST_S', 15);
+INSERT INTO `shipping_method` (id, name, price) VALUES (3, 'INPOST_M', 18);
+INSERT INTO `shipping_method` (id, name, price) VALUES (4, 'INPOST_L', 21);
+INSERT INTO `shipping_method` (id, name, price) VALUES (5, 'PERSONAL_COLLECT', 0);
+
 INSERT INTO `order` (id, shipping_method_id, order_status, payment_method, address_id, shopping_cart_id, user_id) VALUES (1, 1, 'READY', 'BLIK', 1, 1, 1);

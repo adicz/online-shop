@@ -1,4 +1,4 @@
-package pl.sda.shop.onlineshop.controller.dto;
+package pl.sda.shop.onlineshop.controller.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

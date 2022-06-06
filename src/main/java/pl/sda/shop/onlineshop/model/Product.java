@@ -3,11 +3,13 @@ package pl.sda.shop.onlineshop.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,16 +20,17 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String title;
     private String description;
-    public byte[] image;
+    private byte[] image;
     private Integer availability;
     @OneToOne
     private Category category;
     @Min(
-        value = 0,
-        message = "Product price can't be lower than 0")
+            value = 0,
+            message = "Product price can't be lower than 0")
     private BigDecimal price;
     private String brand;
+    private Integer version;
 }

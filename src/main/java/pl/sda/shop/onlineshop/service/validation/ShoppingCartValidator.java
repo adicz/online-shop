@@ -14,13 +14,12 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class ShoppingCartValidator {
-    //todo validate availability of the products
+
     private final ProductRepository productRepository;
 
     public boolean isValid(ShoppingCart shoppingCart) {
         List<ProductCount> productCountList = shoppingCart.getProductCounts();
         BigDecimal productsPrice = BigDecimal.valueOf(0);
-        //for each
         for (ProductCount productCount : productCountList) {
             Product product = productCount.getProduct();
             Product productFromDB = productRepository.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getId()));

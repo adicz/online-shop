@@ -14,8 +14,8 @@ public class ShippingMethodService {
     private final ShippingMethodRepository shippingMethodRepository;
 
     public ShippingMethod findById(Long id) {
-        return shippingMethodRepository.findById(id).orElseThrow(
-                () -> new ShippingMethodNotFoundException(id));
+        return shippingMethodRepository.findById(id)
+                .orElseThrow(() -> new ShippingMethodNotFoundException(id));
     }
 
     public List<ShippingMethod> findAll() {

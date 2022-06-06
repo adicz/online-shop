@@ -3,9 +3,7 @@ package pl.sda.shop.onlineshop.controller;
 import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -13,7 +11,12 @@ import pl.sda.shop.onlineshop.exception.ErrorMessage;
 import pl.sda.shop.onlineshop.exception.ValidationErrorMessage;
 import pl.sda.shop.onlineshop.exception.category.CategoryAlreadyExistsException;
 import pl.sda.shop.onlineshop.exception.category.CategoryNotFoundException;
+import pl.sda.shop.onlineshop.exception.order.OrderNotFoundException;
+import pl.sda.shop.onlineshop.exception.product.ProductNotFoundException;
 import pl.sda.shop.onlineshop.exception.role.RoleNotFoundException;
+import pl.sda.shop.onlineshop.exception.shippingMethod.ShippingMethodNotFoundException;
+import pl.sda.shop.onlineshop.exception.shoppingCart.PriceNotValidException;
+import pl.sda.shop.onlineshop.exception.shoppingCart.ShoppingCartNotFoundException;
 import pl.sda.shop.onlineshop.exception.user.ContentTypeException;
 import pl.sda.shop.onlineshop.exception.user.UserAlreadyExistsException;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
@@ -47,8 +50,13 @@ public class ExceptionController {
 
     @ExceptionHandler({
             CategoryNotFoundException.class,
+            OrderNotFoundException.class,
+            ProductNotFoundException.class,
             RoleNotFoundException.class,
-            UserNotFoundException.class})
+            ShippingMethodNotFoundException.class,
+            ShoppingCartNotFoundException.class,
+            UserNotFoundException.class,
+    })
     public ResponseEntity<ErrorMessage> notFoundException(RuntimeException e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
@@ -59,8 +67,8 @@ public class ExceptionController {
     }
 
     @ExceptionHandler({
-            UserAlreadyExistsException.class,
-            CategoryAlreadyExistsException.class
+            CategoryAlreadyExistsException.class,
+            UserAlreadyExistsException.class
     })
     public ResponseEntity<ErrorMessage> alreadyExistException(RuntimeException e) {
         return ResponseEntity
@@ -92,6 +100,17 @@ public class ExceptionController {
             details.add(fieldName + ": " + errorMessage);
         });
         return details;
+    }
+
+    @ExceptionHandler({PriceNotValidException.class})
+    public ResponseEntity<ErrorMessage> priceValidationException(PriceNotValidException e) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new ErrorMessage(
+                        HttpStatus.CONFLICT.toString(),
+                        e.getMessage(),
+                        LocalDateTime.now()
+                ));
     }
 
 }

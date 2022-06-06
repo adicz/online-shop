@@ -1,11 +1,10 @@
 package pl.sda.shop.onlineshop.controller.mapper;
 
-import pl.sda.shop.onlineshop.controller.dto.OrderCreateDto;
-import pl.sda.shop.onlineshop.controller.dto.OrderResponseDto;
+import pl.sda.shop.onlineshop.controller.dto.order.OrderCreateDto;
+import pl.sda.shop.onlineshop.controller.dto.order.OrderResponseDto;
 import pl.sda.shop.onlineshop.model.Order;
 
 public class OrderMapper {
-    //todo mapping with status and user
 
     public static Order mapToOrder(OrderCreateDto orderCreateDto) {
         return Order.builder()

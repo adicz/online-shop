@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.sda.shop.onlineshop.controller.dto.UserCreateDto;
-import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserCreateDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserResponseDto;
 import pl.sda.shop.onlineshop.service.UserService;
 
 import javax.validation.Valid;

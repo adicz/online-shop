@@ -1,8 +1,8 @@
 package pl.sda.shop.onlineshop.controller.mapper;
 
-import pl.sda.shop.onlineshop.controller.dto.UserCreateDto;
-import pl.sda.shop.onlineshop.controller.dto.UserPatchDto;
-import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserCreateDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserPatchDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserResponseDto;
 import pl.sda.shop.onlineshop.model.Role;
 import pl.sda.shop.onlineshop.model.User;
 

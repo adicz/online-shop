@@ -6,5 +6,4 @@ public enum PaymentMethod {
     CARD,
     ON_DELIVERY,
     TRANSFER
-
 }

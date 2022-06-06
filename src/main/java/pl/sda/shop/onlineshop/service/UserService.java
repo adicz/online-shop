@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import pl.sda.shop.onlineshop.controller.dto.UserPatchDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserPatchDto;
 import pl.sda.shop.onlineshop.exception.role.RoleNotFoundException;
 import pl.sda.shop.onlineshop.exception.user.ContentTypeException;
 import pl.sda.shop.onlineshop.exception.user.UserAlreadyExistsException;
@@ -80,7 +80,7 @@ public class UserService implements UserDetailsService {
 
     public User updateUserImage(MultipartFile multipartFile, Long userId) {
         String contentType = multipartFile.getContentType();
-        if(!IMAGE_FILE_TYPE.equals(contentType)) {
+        if (!IMAGE_FILE_TYPE.equals(contentType)) {
             throw new ContentTypeException(contentType);
         }
         User user = findById(userId);
@@ -98,16 +98,6 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    private byte[] parseDefaultImage(Path path) {
-        byte[] defaultImage = null;
-        try {
-            defaultImage = Files.readAllBytes(path);
-        } catch (IOException e) {
-            log.error("Couldn't parse image", e);
-        }
-        return defaultImage;
-    }
-
     public byte[] getDefaultImage() {
         Path path = getDefaultImagePath();
         return parseDefaultImage(path);
@@ -118,6 +108,16 @@ public class UserService implements UserDetailsService {
         String absolutePath = file.getAbsolutePath();
         Path path = Paths.get(absolutePath + DEFAULT_IMAGE_LOCALIZATION);
         return path;
+    }
+
+    private byte[] parseDefaultImage(Path path) {
+        byte[] defaultImage = null;
+        try {
+            defaultImage = Files.readAllBytes(path);
+        } catch (IOException e) {
+            log.error("Couldn't parse image", e);
+        }
+        return defaultImage;
     }
 
     public boolean deleteById(Long id) {

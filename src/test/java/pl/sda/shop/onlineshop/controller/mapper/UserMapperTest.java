@@ -1,9 +1,8 @@
 package pl.sda.shop.onlineshop.controller.mapper;
 
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pl.sda.shop.onlineshop.controller.dto.UserResponseDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserResponseDto;
 import pl.sda.shop.onlineshop.model.Role;
 import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;

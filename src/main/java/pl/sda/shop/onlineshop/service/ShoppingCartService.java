@@ -16,15 +16,15 @@ public class ShoppingCartService {
     private final ShoppingCartRepository shoppingCartRepository;
 
     public ShoppingCart findById(Long id) {
-        return shoppingCartRepository.findById(id).orElseThrow(
-                () -> new ShoppingCartNotFoundException(id));
+        return shoppingCartRepository.findById(id)
+                .orElseThrow(() -> new ShoppingCartNotFoundException(id));
     }
 
     public ShoppingCart save(ShoppingCart shoppingCart) {
-        if (shoppingCartValidator.isValid(shoppingCart)){
+        if (shoppingCartValidator.isValid(shoppingCart)) {
             return shoppingCartRepository.save(shoppingCart);
         }
-            throw new PriceNotValidException(String.format("Price not valid"));
+        throw new PriceNotValidException();
     }
 
     public boolean deleteById(Long id) {

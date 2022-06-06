@@ -31,7 +31,8 @@ class ShoppingCartValidatorTest {
             100,
             new Category(),
             BigDecimal.valueOf(50.00),
-            "NIKE");
+            "NIKE",
+            1);
     private static final Product PRODUCT_2 = new Product(
             2L,
             "shoes",
@@ -40,7 +41,8 @@ class ShoppingCartValidatorTest {
             100,
             new Category(),
             BigDecimal.valueOf(100.00),
-            "NIKE");
+            "NIKE",
+            1);
     private static final ProductCount PRODUCT_COUNT = new ProductCount(1L, PRODUCT, 1);
     private static final ProductCount PRODUCT_COUNT_2 = new ProductCount(2L, PRODUCT_2, 1);
     private static final BigDecimal SHOPPING_CART_PRICE = BigDecimal.valueOf(150.00);

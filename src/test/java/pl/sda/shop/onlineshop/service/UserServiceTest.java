@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.sda.shop.onlineshop.controller.dto.UserPatchDto;
+import pl.sda.shop.onlineshop.controller.dto.user.UserPatchDto;
 import pl.sda.shop.onlineshop.exception.user.UserAlreadyExistsException;
 import pl.sda.shop.onlineshop.exception.user.UserNotFoundException;
 import pl.sda.shop.onlineshop.model.Address;
@@ -63,7 +63,7 @@ class UserServiceTest {
     static void beforeAll() {
         USER_1 = createUser(1L, "Adrian", "adicz");
         USER_1_PATCH = createUserPatch("Kamil");
-        USER_1_UPDATED = createUser(1L,"Kamil", "adicz");
+        USER_1_UPDATED = createUser(1L, "Kamil", "adicz");
         USER_2 = createUser(2L, "Adam", "adamB");
         USER_3 = createUser(3L, "Michał", "misha");
         USER_TO_SAVE_IN_DATABASE = createUser("adicz");

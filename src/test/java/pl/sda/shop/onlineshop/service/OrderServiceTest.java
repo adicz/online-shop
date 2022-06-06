@@ -8,19 +8,26 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.exception.order.OrderNotFoundException;
-import pl.sda.shop.onlineshop.model.*;
+import pl.sda.shop.onlineshop.model.Address;
+import pl.sda.shop.onlineshop.model.Order;
+import pl.sda.shop.onlineshop.model.Product;
+import pl.sda.shop.onlineshop.model.ProductCount;
+import pl.sda.shop.onlineshop.model.ShippingMethod;
+import pl.sda.shop.onlineshop.model.ShoppingCart;
+import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.model.enumerated.OrderStatus;
 import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 import pl.sda.shop.onlineshop.repository.OrderRepository;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 
