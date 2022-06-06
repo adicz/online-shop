@@ -3,11 +3,9 @@ package pl.sda.shop.onlineshop.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.SortNatural;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -22,7 +20,7 @@ public class Product {
     private Long Id;
     @NotNull
     private String title;
-    private String descrpition;
+    private String description;
     @URL
     private String photo;
     private Integer availability;

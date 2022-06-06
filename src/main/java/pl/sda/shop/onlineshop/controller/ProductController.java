@@ -34,28 +34,22 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Product> getProductById(@RequestBody Long id) {
+    ResponseEntity<Product> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.findById(id));
     }
 
-        @GetMapping("/category")
-        ResponseEntity<List<Product>> getProductByCategory(@RequestBody Category category) {
-            return ResponseEntity.ok(productService.findByCategory(category));
-        }
+    @GetMapping("/category/{category}")
+    ResponseEntity<List<Product>> getProductByCategory(@PathVariable Category category) {
+        return ResponseEntity.ok(productService.findByCategory(category));
+    }
 
-        @GetMapping("/parent")
-        ResponseEntity<List<Product>> getProductByParent(@RequestBody Category category) {
-        List<Category> categories = categoryService.findByParent(category);
-            return ResponseEntity.ok(productService.findByParent(categories));
-        }
-
-    @GetMapping("/brand")
-    ResponseEntity<List<Product>> getProductByBrand(@RequestBody String brand) {
+    @GetMapping("/brand/{brand}")
+    ResponseEntity<List<Product>> getProductByBrand(@PathVariable String brand) {
         return ResponseEntity.ok(productService.findByBrand(brand));
     }
 
-    @GetMapping("/title")
-    ResponseEntity<List<Product>> getProductByTitle(@RequestBody String title) {
+    @GetMapping("/title/{title}")
+    ResponseEntity<List<Product>> getProductByTitle(@PathVariable String title) {
         return ResponseEntity.ok(productService.findByTitle(title));
     }
 

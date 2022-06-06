@@ -43,3 +43,13 @@ INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('BA
 INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('SSD GOODRAM CX400 256GB SATA III 2,5 RETAIL', 100, 13, 129.69, 'GOODRAM');
 INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('PAMIĘĆ RAM 8GB PC3L DDR3L SO-DIMM 12800S 1600MHz', 23, 11, 98, 'Noname');
 INSERT INTO `product`(title, availability, category_id, price, brand) VALUE ('Kabel HDMI Jsaux CV0035-3M 3 m czarny', 50, 10, 40, 'Jsaux');
+
+INSERT INTO `address` (`id`, `country`, `city`, `house_number`, `postal_code`, `street`) VALUES ('1', 'Poland', 'Warszawa', '6', '00 - 902', 'Wiejska');
+INSERT INTO `product_count` (`id`, `count`, `product_id`) VALUES ('1', '1', '1');
+INSERT INTO `product_count` (`id`, `count`, `product_id`) VALUES ('2', '2', '2');
+INSERT INTO `shopping_cart` (`id`, `total_price`) VALUES ('1', '289');
+INSERT INTO `shopping_cart` (`id`, `total_price`) VALUES ('2', '578');
+INSERT INTO `shopping_cart_product_counts` (`shopping_cart_id`, `product_counts_id`) VALUES ('1', '1');
+INSERT INTO `shopping_cart_product_counts` (`shopping_cart_id`, `product_counts_id`) VALUES ('2', '2');
+INSERT INTO `shipping_method` (`id`, `name`, `price`) VALUES ('1', 'DHL', '10');
+INSERT INTO `order` (`id`, `shipping_method_id`, `order_status`, `payment_method`, `address_id`, `shopping_cart_id`, `user_id`) VALUES ('1', '1', 'READY', 'BLIK', '1', '1', '1');
