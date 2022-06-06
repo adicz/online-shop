@@ -6,22 +6,23 @@ import lombok.NoArgsConstructor;
 import pl.sda.shop.onlineshop.model.Address;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserPatchDto {
 
-    @NotNull
     private String firstname;
-    @NotNull
     private String lastname;
-    @NotNull
+
+    @NotBlank(message = "Name is mandatory")
+    @Email(message = "Syntax error")
     private String email;
-    @NotNull
+
     private Address address;
-    @NotNull
+
     private NotifyOption notifyOption;
 
 }

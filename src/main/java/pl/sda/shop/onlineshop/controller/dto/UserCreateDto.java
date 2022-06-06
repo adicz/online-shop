@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -13,16 +14,25 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class UserCreateDto {
 
-    @NotNull
-    @Length(min = 4)
+    @NotNull(message = "Can't be null")
+    @NotBlank(message = "Username is mandatory")
+    @Length(
+            min = 4,
+            message = "Length should be greater than {min}"
+    )
     private String username;
 
-    @NotNull
-    @Length(min = 6)
+    @NotNull(message = "Can't be null")
+    @NotBlank(message = "Name is mandatory")
+    @Length(
+            min = 6,
+            message = "Length should be greater than {min}"
+    )
     private String password;
 
-    @NotNull
-    @Email
+    @NotNull(message = "Can't be null")
+    @NotBlank(message = "Name is mandatory")
+    @Email(message = "Syntax error")
     private String email;
 
 }

@@ -1,19 +1,25 @@
 package pl.sda.shop.onlineshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
 
     @Id
-    public Long id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String street;
-    public String houseNumber;
-    public String postalCode;
-    public String city;
-    public String country;
+    private Long id;
+    private String street;
+    private String houseNumber;
+    private String postalCode;
+    private String city;
+    private String country;
 }

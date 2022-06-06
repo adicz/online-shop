@@ -12,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @GeneratedValue
     private String name;
