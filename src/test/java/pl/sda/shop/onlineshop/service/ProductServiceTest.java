@@ -1,6 +1,5 @@
 package pl.sda.shop.onlineshop.service;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,7 +8,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
-import pl.sda.shop.onlineshop.model.User;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
 import java.math.BigDecimal;

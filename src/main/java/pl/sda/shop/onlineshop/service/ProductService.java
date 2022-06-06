@@ -1,6 +1,9 @@
 package pl.sda.shop.onlineshop.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
@@ -24,10 +27,20 @@ public class ProductService {
                 (String.format("Product with id = %d not found in database", id)));
     }
 
+    public List<Product> findAll(PageRequest of) {return productRepository.findAll();}
+
     public List<Product> findAll() {return productRepository.findAll();}
 
     public List<Product> findByCategory(Category category){
         return productRepository.findProductsByCategory(category);
+    }
+
+    public List<Product> findByParent(List<Category> categories){
+        List<Product> products = null;
+        for (Category category : categories){
+            products.add((Product) productRepository.findProductsByCategory(category).stream());
+        }
+        return products;
     }
 
     public List<Product> findByBrand(String brand){
@@ -50,4 +63,8 @@ public class ProductService {
         return true;
     }
 
+
+    public Page<Product> findAll(String categoryName, Pageable pageable) {
+        return productRepository.findProductsByCategoryName(categoryName, pageable);
+    }
 }
