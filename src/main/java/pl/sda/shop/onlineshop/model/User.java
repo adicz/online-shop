@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.shop.onlineshop.model.enumerated.NotifyOption;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,7 +39,7 @@ public class User implements UserDetails {
     public String firstname;
     public String lastname;
     public String email;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public Address address;
     @Column(columnDefinition = "MEDIUMBLOB")
     public byte[] image;

@@ -35,7 +35,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @OneToOne

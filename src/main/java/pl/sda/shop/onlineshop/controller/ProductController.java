@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.shop.onlineshop.model.Category;
 import pl.sda.shop.onlineshop.model.Product;
-import pl.sda.shop.onlineshop.service.CategoryService;
 import pl.sda.shop.onlineshop.service.ProductService;
 
 import javax.validation.Valid;
@@ -20,8 +19,14 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    private final CategoryService categoryService;
+    private final String FIRST_PAGE = "0";
+    private final String DEFAULT_PAGE_SIZE = "20";
+    private final String SORT_BY_TITLE = "title";
 
+    @GetMapping("/{id}")
+    ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.findById(id));
+    }
 
     @PostMapping
     public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product) {
@@ -29,35 +34,18 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@RequestBody Long id) {
+    public void delete(@PathVariable Long id) {
         productService.deleteById(id);
     }
 
-    @GetMapping("/{id}")
-    ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.findById(id));
-    }
-
-    @GetMapping("/category/{category}")
-    ResponseEntity<List<Product>> getProductByCategory(@PathVariable Category category) {
-        return ResponseEntity.ok(productService.findByCategory(category));
-    }
-
-    @GetMapping("/brand/{brand}")
-    ResponseEntity<List<Product>> getProductByBrand(@PathVariable String brand) {
-        return ResponseEntity.ok(productService.findByBrand(brand));
-    }
-
-    @GetMapping("/title/{title}")
-    ResponseEntity<List<Product>> getProductByTitle(@PathVariable String title) {
-        return ResponseEntity.ok(productService.findByTitle(title));
-    }
-
-    @GetMapping("/paginate")
+    @GetMapping("/search")
     public ResponseEntity<Page<Product>> paginateALlByCategory(
-            @RequestParam String categoryName,
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "20") Integer size) {
-        return ResponseEntity.ok(productService.findAll(categoryName, PageRequest.of(page, size, Sort.unsorted())));
+            @RequestParam(required = false) String categoryName,
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String title,
+            @RequestParam(defaultValue = FIRST_PAGE) Integer page,
+            @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size,
+            @RequestParam(defaultValue = SORT_BY_TITLE) String sortBy) {
+        return ResponseEntity.ok(productService.findAll(categoryName, brand, title, PageRequest.of(page, size, Sort.by(sortBy))));
     }
 }
