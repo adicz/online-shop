@@ -58,4 +58,4 @@ INSERT INTO `shipping_method` (id, name, price) VALUES (3, 'INPOST_M', 18);
 INSERT INTO `shipping_method` (id, name, price) VALUES (4, 'INPOST_L', 21);
 INSERT INTO `shipping_method` (id, name, price) VALUES (5, 'PERSONAL_COLLECT', 0);
 
-INSERT INTO `order` (id, shipping_method_id, order_status, payment_method, address_id, shopping_cart_id, user_id, price) VALUES (1, 1, 'READY', 'BLIK', 1, 1, 1, 309);
+INSERT INTO `order` (id, order_date,shipping_method_id, order_status, payment_method, address_id, shopping_cart_id, user_id, price) VALUES (1, CURRENT_TIMESTAMP, 1, 'READY', 'BLIK', 1, 1, 1, 309);
