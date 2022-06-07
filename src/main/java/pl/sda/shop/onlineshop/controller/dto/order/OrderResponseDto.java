@@ -9,6 +9,7 @@ import pl.sda.shop.onlineshop.model.ShoppingCart;
 import pl.sda.shop.onlineshop.model.enumerated.OrderStatus;
 import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -23,4 +24,5 @@ public class OrderResponseDto {
     private PaymentMethod paymentMethod;
     private Address address;
     private ShoppingCart shoppingCart;
+    private BigDecimal price;
 }

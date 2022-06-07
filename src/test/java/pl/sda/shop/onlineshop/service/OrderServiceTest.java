@@ -42,8 +42,9 @@ class OrderServiceTest {
     private static final Address ADDRESS = new Address();
     private static final User USER = new User();
     private static final ShippingMethod SHIPPING_METHOD = new ShippingMethod(1L, "DHL", BigDecimal.valueOf(10.00));
+    private static final BigDecimal ORDER_PRICE = SHOPPING_CART_PRICE.add(SHIPPING_METHOD.getPrice());
     private static LocalDateTime localDateTime;
-    private static final Order ORDER = new Order(ORDER_ID, localDateTime, OrderStatus.ORDERED, SHIPPING_METHOD, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER);
+    private static final Order ORDER = new Order(ORDER_ID, localDateTime, OrderStatus.ORDERED, SHIPPING_METHOD, PaymentMethod.BLIK, ADDRESS, SHOPPING_CART, USER, ORDER_PRICE);
     private static final List<Order> ORDERS = List.of(ORDER);
 
     private static String USERNAME = "Johhny";

@@ -13,6 +13,7 @@ public class OrderMapper {
                 .paymentMethod(orderCreateDto.getPaymentMethod())
                 .address(orderCreateDto.getAddress())
                 .shoppingCart(orderCreateDto.getShoppingCart())
+                .price(orderCreateDto.getPrice())
                 .build();
     }
 
@@ -24,6 +25,7 @@ public class OrderMapper {
                 order.getShippingMethod(),
                 order.getPaymentMethod(),
                 order.getAddress(),
-                order.getShoppingCart());
+                order.getShoppingCart(),
+                order.getPrice());
     }
 }

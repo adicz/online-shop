@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -45,6 +46,5 @@ public class Order {
     private ShoppingCart shoppingCart;
     @ManyToOne
     private User user;
-
-
+    private BigDecimal price;
 }

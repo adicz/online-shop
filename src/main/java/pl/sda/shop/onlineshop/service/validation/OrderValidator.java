@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.sda.shop.onlineshop.exception.product.ProductNotAvailableException;
 import pl.sda.shop.onlineshop.exception.product.ProductNotFoundException;
+import pl.sda.shop.onlineshop.model.Order;
 import pl.sda.shop.onlineshop.model.Product;
 import pl.sda.shop.onlineshop.model.ProductCount;
-import pl.sda.shop.onlineshop.model.ShoppingCart;
 import pl.sda.shop.onlineshop.repository.ProductRepository;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class OrderValidator {
 
     private final ProductRepository productRepository;
 
-    public boolean isAvailable(ShoppingCart shoppingCart) {
-        List<ProductCount> productCountList = shoppingCart.getProductCounts();
+    public boolean isAvailable(Order order) {
+        List<ProductCount> productCountList = order.getShoppingCart().getProductCounts();
         for (ProductCount productCount : productCountList) {
             Product product = productCount.getProduct();
             Product productFromDB = productRepository.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getId()));
@@ -26,6 +26,7 @@ public class OrderValidator {
                 throw new ProductNotAvailableException();
             }
             productFromDB.setAvailability(productFromDB.getAvailability() - productCount.getCount());
+            order.setPrice((order.getShoppingCart().getTotalPrice()).add(order.getShippingMethod().getPrice()));
         }
         return true;
     }

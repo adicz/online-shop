@@ -9,6 +9,7 @@ import pl.sda.shop.onlineshop.model.ShoppingCart;
 import pl.sda.shop.onlineshop.model.enumerated.PaymentMethod;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -30,6 +31,9 @@ public class OrderCreateDto {
 
     @NotNull
     private ShoppingCart shoppingCart;
+
+    @NotNull
+    private BigDecimal price;
 
 
 }

@@ -35,7 +35,7 @@ public class OrderService {
     }
 
     public Order save(Order order, String username) {
-        if (orderValidator.isAvailable(order.getShoppingCart())) {
+        if (orderValidator.isAvailable(order)) {
             User user = userService.findByUsername(username);
             order.setUser(user);
             order.setOrderDate(java.time.LocalDateTime.now());
