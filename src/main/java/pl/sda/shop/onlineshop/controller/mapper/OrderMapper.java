@@ -4,6 +4,8 @@ import pl.sda.shop.onlineshop.controller.dto.order.OrderCreateDto;
 import pl.sda.shop.onlineshop.controller.dto.order.OrderResponseDto;
 import pl.sda.shop.onlineshop.model.Order;
 
+import java.time.format.DateTimeFormatter;
+
 public class OrderMapper {
 
     public static Order mapToOrder(OrderCreateDto orderCreateDto) {
@@ -18,9 +20,11 @@ public class OrderMapper {
     }
 
     public static OrderResponseDto mapOrderToOrderResponseDto(Order order) {
+        DateTimeFormatter newDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatDateTime = order.getOrderDate().format(newDateFormat);
         return new OrderResponseDto(
                 order.getId(),
-                order.getOrderDate(),
+                formatDateTime,
                 order.getOrderStatus(),
                 order.getShippingMethod(),
                 order.getPaymentMethod(),

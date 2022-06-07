@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class OrderResponseDto {
 
     private Long id;
-    private LocalDateTime orderDate;
+    private String orderDate;
     private OrderStatus orderStatus;
     private ShippingMethod shippingMethod;
     private PaymentMethod paymentMethod;
